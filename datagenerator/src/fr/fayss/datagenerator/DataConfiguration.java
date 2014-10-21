@@ -2,6 +2,7 @@ package fr.fayss.datagenerator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 
@@ -20,6 +21,10 @@ public  class DataConfiguration {
 	
 	public Object setPropertyConfiguration (String pPropertyName, Object pValue){
 		return mPropertyConfigMap.put(pPropertyName, pValue);
+	}
+	
+	public Set <String> getAllConfiguredPropertyName (){
+		return mPropertyConfigMap.keySet();
 	}
 	
 

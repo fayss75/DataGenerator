@@ -1,32 +1,39 @@
 package fr.fayss.datagenerator;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 public class DataConfigurationTools {
 
-	
-	public void configure(DataGenerator pDataGen, String PropertyName, DataConfiguration pDataconfig ) 
+
+	public void confugre ( DataGenerator pDataGen,DataConfiguration pDataconfig)
 			throws PropertyConfigurationException {
-		
-		Object propertyconfig = pDataconfig.getPropertyConfiguration(PropertyName);
 
-		
-		try {
-			Field property = pDataGen.getClass().getField(PropertyName);
-			if (propertyconfig != null && propertyconfig.getClass().isInstance(property.getClass())){
-				property.set(pDataGen, propertyconfig);
-			}
-		} catch (SecurityException e) {
-			throw new PropertyConfigurationException(e);
-		} catch (NoSuchFieldException e) {
-			throw new PropertyConfigurationException(e);
-		} catch (IllegalArgumentException e) {
-			throw new PropertyConfigurationException(e);
-		} catch (IllegalAccessException e) {
-			throw new PropertyConfigurationException(e);
+		for (String property : pDataconfig.getAllConfiguredPropertyName()) {
+			Object propertyconfig = pDataconfig.getPropertyConfiguration(property);
+			configure( pDataGen,  property,  propertyconfig ) ;
 		}
-		
+	}
 
+	/**
+	 * 
+	 * @param pDataGen
+	 * @param PropertyName
+	 * @param propertyValue
+	 * @throws PropertyConfigurationException
+	 */
+	public void configure(DataGenerator pDataGen, String PropertyName, Object propertyValue ) 
+			throws PropertyConfigurationException {
+
+			try {
+				BeanUtils.setProperty(pDataGen, PropertyName, propertyValue);
+			} catch (IllegalAccessException e) {
+				throw new PropertyConfigurationException(e);
+			} catch (InvocationTargetException e) {
+				throw new PropertyConfigurationException(e);
+			}
+		
 
 	}
 }
