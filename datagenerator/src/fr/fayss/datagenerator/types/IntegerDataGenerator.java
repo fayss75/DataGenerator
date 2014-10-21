@@ -24,13 +24,13 @@ public @Getter @Setter  class IntegerDataGenerator implements DataGenerator {
 	
 	@Override
 	public void configure(DataConfiguration pDataconfig) {
-		Object startInclusive = pDataconfig.getPropertyConfiguration().get(DataConfigurationConstant.START_INCLUSIVE);
+		Object startInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.START_INCLUSIVE);
 
 		if (startInclusive != null && startInclusive instanceof Integer)
 			setStartInclusive((Integer)startInclusive);
 		
 		
-		Object endInclusive = pDataconfig.getPropertyConfiguration().get(DataConfigurationConstant.END_INCLUSIVE);
+		Object endInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.END_INCLUSIVE);
 
 		if (endInclusive != null && endInclusive instanceof Integer)
 			setEndInclusive((Integer)endInclusive);	

@@ -26,7 +26,7 @@ public  @Getter @Setter  class StringDataGenerator implements DataGenerator{
 	@Override
 	public void configure(DataConfiguration pDataconfig) {
 		
-		Object stringLenght = pDataconfig.getPropertyConfiguration().get(DataConfigurationConstant.STRING_LENGTH);
+		Object stringLenght = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.STRING_LENGTH);
 
 		if (stringLenght != null && stringLenght instanceof Integer)
 			setStringLength((Integer)stringLenght);

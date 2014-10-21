@@ -8,7 +8,7 @@ public class DataConfigurationTools {
 	public void configure(DataGenerator pDataGen, String PropertyName, DataConfiguration pDataconfig ) 
 			throws PropertyConfigurationException {
 		
-		Object propertyconfig = pDataconfig.getPropertyConfiguration().get(PropertyName);
+		Object propertyconfig = pDataconfig.getPropertyConfiguration(PropertyName);
 
 		
 		try {
