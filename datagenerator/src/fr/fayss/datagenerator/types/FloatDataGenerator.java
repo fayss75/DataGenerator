@@ -3,14 +3,18 @@
  */
 package fr.fayss.datagenerator.types;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import org.apache.commons.lang3.RandomUtils;
 
 import fr.fayss.datagenerator.DataConfiguration;
-import fr.fayss.datagenerator.DataConfigurationConstant;
+import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
+import fr.fayss.datagenerator.PropertyConfigurationException;
 
 /**
  * @author fayss
@@ -24,25 +28,20 @@ public @Getter @Setter class FloatDataGenerator implements DataGenerator {
 	
 	// the max value that can be generated
 	private Float mEndInclusive = 9000f;
+	
+	// number of decimals
+	private int mScale = 2 ;
 
 	@Override
 	public Object generate() {
-		return RandomUtils.nextFloat(getStartInclusive(), getEndInclusive());
+		Float result =  RandomUtils.nextFloat(getStartInclusive(), getEndInclusive());
+		return new BigDecimal(result).setScale(getScale(), RoundingMode.HALF_UP).floatValue();
 	}
 
 	@Override
-	public void configure(DataConfiguration pDataconfig) {
-		Object startInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.START_INCLUSIVE);
-
-		if (startInclusive != null && startInclusive instanceof Float)
-			setStartInclusive((Float)startInclusive);
+	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
 		
-		
-		Object endInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.END_INCLUSIVE);
-
-		if (endInclusive != null && endInclusive instanceof Float)
-			setEndInclusive((Float)endInclusive);	
-
+		DataConfigurationTools.configure(this, pDataconfig);
 	}
 
 }

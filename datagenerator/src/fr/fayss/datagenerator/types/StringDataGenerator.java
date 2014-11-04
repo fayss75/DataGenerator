@@ -7,8 +7,9 @@ import lombok.Setter;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import fr.fayss.datagenerator.DataConfiguration;
-import fr.fayss.datagenerator.DataConfigurationConstant;
+import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
+import fr.fayss.datagenerator.PropertyConfigurationException;
 
 public  @Getter @Setter  class StringDataGenerator implements DataGenerator{
 
@@ -24,12 +25,8 @@ public  @Getter @Setter  class StringDataGenerator implements DataGenerator{
 	}
 	
 	@Override
-	public void configure(DataConfiguration pDataconfig) {
+	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
 		
-		Object stringLenght = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.STRING_LENGTH);
-
-		if (stringLenght != null && stringLenght instanceof Integer)
-			setStringLength((Integer)stringLenght);
-
+		DataConfigurationTools.configure(this, pDataconfig);
 	}
 }

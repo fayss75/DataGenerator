@@ -8,7 +8,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class DataConfigurationTools {
 
 
-	public void confugre ( DataGenerator pDataGen,DataConfiguration pDataconfig)
+	public static void configure ( DataGenerator pDataGen,DataConfiguration pDataconfig)
 			throws PropertyConfigurationException {
 
 		for (String property : pDataconfig.getAllConfiguredPropertyName()) {
@@ -24,16 +24,21 @@ public class DataConfigurationTools {
 	 * @param propertyValue
 	 * @throws PropertyConfigurationException
 	 */
-	public void configure(DataGenerator pDataGen, String PropertyName, Object propertyValue ) 
+	public static void configure(DataGenerator pDataGen, String PropertyName, Object propertyValue ) 
 			throws PropertyConfigurationException {
 
 		try {
+			
+			// add the get because set property doesn't throw an expeption if the property doesn't exist ..
+			BeanUtils.getProperty(pDataGen, PropertyName);
 			BeanUtils.setProperty(pDataGen, PropertyName, propertyValue);
 
 		} catch (IllegalAccessException e) {
 			throw new PropertyConfigurationException(e);
 		} catch (InvocationTargetException e) {
 			throw new PropertyConfigurationException(e);
+		} catch (NoSuchMethodException e) {
+			throw new PropertyConfigurationException("Property " + PropertyName + " not found in data generator " + pDataGen.getClass());
 		}
 
 
@@ -45,36 +50,14 @@ public class DataConfigurationTools {
 	 * @param pProperties
 	 * @throws PropertyConfigurationException
 	 */
-	public void configure(DataGenerator pDataGen, Map<String, Object> pProperties ) 
+	public static void configure(DataGenerator pDataGen, Map<String, Object> pProperties ) 
 			throws PropertyConfigurationException {
 
-		try {
-			BeanUtils.populate(pDataGen, pProperties);
-
-		} catch (IllegalAccessException e) {
-			throw new PropertyConfigurationException(e);
-		} catch (InvocationTargetException e) {
-			throw new PropertyConfigurationException(e);
-		}
-
-
+			for (String key: pProperties.keySet()) {
+				configure(pDataGen, key,pProperties.get(key));
+			}
 	}
 
-
-	/**
-	 * 
-	 * @param pDataGen
-	 * @param pProperties
-	 * @throws PropertyConfigurationException
-	 */
-	public void configure(DataGenerator pDataGen, DataConfiguration pDataconfig) 
-			throws PropertyConfigurationException {
-
-		for (String key : pDataconfig.getAllConfiguredPropertyName()) {
-			configure( pDataGen,  key,  pDataconfig.getPropertyConfiguration(key) ); 
-		}
-
-	}
 
 
 

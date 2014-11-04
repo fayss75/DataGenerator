@@ -7,8 +7,9 @@ import lombok.Setter;
 import org.apache.commons.lang3.RandomUtils;
 
 import fr.fayss.datagenerator.DataConfiguration;
-import fr.fayss.datagenerator.DataConfigurationConstant;
+import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
+import fr.fayss.datagenerator.PropertyConfigurationException;
 
 public @Getter @Setter  class IntegerDataGenerator implements DataGenerator {
 
@@ -24,17 +25,8 @@ public @Getter @Setter  class IntegerDataGenerator implements DataGenerator {
 	}
 	
 	@Override
-	public void configure(DataConfiguration pDataconfig) {
-		Object startInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.START_INCLUSIVE);
-
-		if (startInclusive != null && startInclusive instanceof Integer)
-			setStartInclusive((Integer)startInclusive);
+	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
 		
-		
-		Object endInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.END_INCLUSIVE);
-
-		if (endInclusive != null && endInclusive instanceof Integer)
-			setEndInclusive((Integer)endInclusive);	
-		
+		DataConfigurationTools.configure(this, pDataconfig);
 	}
 }

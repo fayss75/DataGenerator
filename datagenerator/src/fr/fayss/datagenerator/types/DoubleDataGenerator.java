@@ -1,13 +1,17 @@
 package fr.fayss.datagenerator.types;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import org.apache.commons.lang3.RandomUtils;
 
 import fr.fayss.datagenerator.DataConfiguration;
-import fr.fayss.datagenerator.DataConfigurationConstant;
+import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
+import fr.fayss.datagenerator.PropertyConfigurationException;
 
 /**
  * Class that handle Double data generation
@@ -24,20 +28,19 @@ public @Getter @Setter class DoubleDataGenerator implements DataGenerator {
 	// the max value that can be generated
 	private Double mEndInclusive = 9000d;
 	
+	// number of decimals
+	private Integer mScale = 2 ;
+	
 	@Override
 	public Object generate() {
 		
-		return RandomUtils.nextDouble(getStartInclusive(), getEndInclusive());
+		Double result = RandomUtils.nextDouble(getStartInclusive(), getEndInclusive());
+		return new BigDecimal(result).setScale(getScale(), RoundingMode.HALF_UP).doubleValue();
 	}
+
 	@Override
-	public void configure(DataConfiguration pDataconfig) {
-		Object startInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.START_INCLUSIVE);
-
-		if (startInclusive != null && startInclusive instanceof Double)
-			setStartInclusive((Double)startInclusive);	
-		Object endInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.END_INCLUSIVE);
-
-		if (endInclusive != null && endInclusive instanceof Double)
-			setEndInclusive((Double)endInclusive);
+	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
+		
+		DataConfigurationTools.configure(this, pDataconfig);
 	}
 }

@@ -13,5 +13,5 @@ public interface DataGenerator {
 	public Object generate ();
 	
 	
-	public void configure (DataConfiguration pDataconfig) ;
+	public void configure (DataConfiguration pDataconfig) throws PropertyConfigurationException ;
 }

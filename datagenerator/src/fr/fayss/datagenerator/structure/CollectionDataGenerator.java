@@ -6,8 +6,9 @@ import java.util.Iterator;
 import lombok.Getter;
 import lombok.Setter;
 import fr.fayss.datagenerator.DataConfiguration;
-import fr.fayss.datagenerator.DataConfigurationConstant;
+import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
+import fr.fayss.datagenerator.PropertyConfigurationException;
 
 public class CollectionDataGenerator implements DataGenerator{
 
@@ -43,12 +44,11 @@ public class CollectionDataGenerator implements DataGenerator{
 
 		return sb.toString();
 	}
-	@Override
-	public void configure(DataConfiguration pDataconfig) {
-		 Object seperatorValue = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.SEPERATOR);
 
-			if (seperatorValue != null && seperatorValue instanceof String)
-				setSeparator((String)seperatorValue);
+	@Override
+	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
 		
+		DataConfigurationTools.configure(this, pDataconfig);
 	}
+
 }

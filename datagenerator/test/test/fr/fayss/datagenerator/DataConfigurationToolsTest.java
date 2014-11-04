@@ -25,13 +25,12 @@ public class DataConfigurationToolsTest {
 		
 		IntegerDataGenerator integerDataGenerator = new IntegerDataGenerator ();
 		
-		DataConfigurationTools dct =new DataConfigurationTools() ;
 		
 		Assert.assertEquals(new Integer(1000), integerDataGenerator.getStartInclusive());
 		Assert.assertEquals(new Integer(9000), integerDataGenerator.getEndInclusive());
 		
 		try {
-			dct.configure(integerDataGenerator, DataConfigurationConstant.START_INCLUSIVE, 5);
+			DataConfigurationTools.configure(integerDataGenerator, DataConfigurationConstant.START_INCLUSIVE, 5);
 		} catch (PropertyConfigurationException e) {
 			Assert.fail("PropertyConfigurationException not exptected");
 		}
