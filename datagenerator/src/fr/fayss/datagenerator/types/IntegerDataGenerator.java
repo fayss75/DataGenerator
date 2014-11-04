@@ -1,5 +1,6 @@
 package fr.fayss.datagenerator.types;
 
+
 import lombok.Getter;
 import lombok.Setter;
 

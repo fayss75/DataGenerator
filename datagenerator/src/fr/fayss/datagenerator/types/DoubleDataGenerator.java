@@ -34,13 +34,10 @@ public @Getter @Setter class DoubleDataGenerator implements DataGenerator {
 		Object startInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.START_INCLUSIVE);
 
 		if (startInclusive != null && startInclusive instanceof Double)
-			setStartInclusive((Double)startInclusive);
-		
-		
+			setStartInclusive((Double)startInclusive);	
 		Object endInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.END_INCLUSIVE);
 
 		if (endInclusive != null && endInclusive instanceof Double)
-			setEndInclusive((Double)endInclusive);	
-		
+			setEndInclusive((Double)endInclusive);
 	}
 }
