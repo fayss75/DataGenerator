@@ -12,10 +12,10 @@ import fr.fayss.datagenerator.DataGenerator;
 public @Getter @Setter  class IntegerDataGenerator implements DataGenerator {
 
 	// the min value that can be generated
-	private int mStartInclusive = 1000;
+	private Integer mStartInclusive = 1000;
 	
 	// the max value that can be generated
-	private int mEndInclusive = 9000;
+	private Integer mEndInclusive = 9000;
 	
 	@Override
 	public Object generate() {

@@ -27,8 +27,8 @@ public class DataConfigurationToolsTest {
 		
 		DataConfigurationTools dct =new DataConfigurationTools() ;
 		
-		Assert.assertEquals(1000, integerDataGenerator.getStartInclusive());
-		Assert.assertEquals(9000, integerDataGenerator.getEndInclusive());
+		Assert.assertEquals(new Integer(1000), integerDataGenerator.getStartInclusive());
+		Assert.assertEquals(new Integer(9000), integerDataGenerator.getEndInclusive());
 		
 		try {
 			dct.configure(integerDataGenerator, DataConfigurationConstant.START_INCLUSIVE, 5);
@@ -37,8 +37,8 @@ public class DataConfigurationToolsTest {
 		}
 	
 		
-		Assert.assertEquals(5, integerDataGenerator.getStartInclusive());
-		Assert.assertEquals(9000, integerDataGenerator.getEndInclusive());
+		Assert.assertEquals(new Integer(5), integerDataGenerator.getStartInclusive());
+		Assert.assertEquals(new Integer(9000), integerDataGenerator.getEndInclusive());
 		
 		
 	}

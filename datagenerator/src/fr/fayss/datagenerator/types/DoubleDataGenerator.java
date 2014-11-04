@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.RandomUtils;
 
 import fr.fayss.datagenerator.DataConfiguration;
+import fr.fayss.datagenerator.DataConfigurationConstant;
 import fr.fayss.datagenerator.DataGenerator;
 
 /**
@@ -18,10 +19,10 @@ import fr.fayss.datagenerator.DataGenerator;
 public @Getter @Setter class DoubleDataGenerator implements DataGenerator {
 
 	// the min value that can be generated
-	private double mStartInclusive = 1000;
+	private Double mStartInclusive = 1000d;
 	
 	// the max value that can be generated
-	private double mEndInclusive = 9000;
+	private Double mEndInclusive = 9000d;
 	
 	@Override
 	public Object generate() {
@@ -30,7 +31,16 @@ public @Getter @Setter class DoubleDataGenerator implements DataGenerator {
 	}
 	@Override
 	public void configure(DataConfiguration pDataconfig) {
-		// TODO use configuration
+		Object startInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.START_INCLUSIVE);
+
+		if (startInclusive != null && startInclusive instanceof Double)
+			setStartInclusive((Double)startInclusive);
+		
+		
+		Object endInclusive = pDataconfig.getPropertyConfiguration(DataConfigurationConstant.END_INCLUSIVE);
+
+		if (endInclusive != null && endInclusive instanceof Double)
+			setEndInclusive((Double)endInclusive);	
 		
 	}
 }

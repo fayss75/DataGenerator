@@ -3,6 +3,8 @@ package fr.fayss.datagenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
+
 import fr.fayss.datagenerator.atg.PropertyDataGenerator;
 import fr.fayss.datagenerator.atg.RepositoryItemDataGenerator;
 import fr.fayss.datagenerator.types.DoubleDataGenerator;
@@ -20,9 +22,10 @@ public class MainDataGenerator {
 	
 	
 	public static void main(String[] args) {
-		DataGenerator skuGen = createSkuGen ();
-			System.out.println(skuGen.generate());
-			System.out.println(skuGen.generate());
+//		DataGenerator skuGen = createSkuGen ();
+//			System.out.println(skuGen.generate());
+//			System.out.println(skuGen.generate());
+		testException();
 	}
 	
 	public static List<DataGenerator> propertyBuilder () {
@@ -38,7 +41,25 @@ public class MainDataGenerator {
 		
 	}
 	
-	
+	public static void testException(){
+		
+DataConfigurationTools dct =new DataConfigurationTools() ;
+		
+IntegerDataGenerator integerDataGenerator = new IntegerDataGenerator ();
+
+
+System.out.println("avant :" + integerDataGenerator.getStartInclusive());
+			try {
+				dct.configure(integerDataGenerator, "ee", 5);
+			} catch (PropertyConfigurationException e) {
+				
+				e.printStackTrace();
+			}
+			
+			System.out.println("apres :" + integerDataGenerator.getStartInclusive());
+		
+		
+	}
 	public static RepositoryItemDataGenerator createSkuGen (){
 		
 		StringDataGenerator idgenerator = new StringDataGenerator();
