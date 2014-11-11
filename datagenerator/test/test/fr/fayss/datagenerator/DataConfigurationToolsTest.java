@@ -7,7 +7,7 @@ import org.junit.Test;
 import fr.fayss.datagenerator.DataConfigurationConstant;
 import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.PropertyConfigurationException;
-import fr.fayss.datagenerator.types.IntegerDataGenerator;
+import fr.fayss.datagenerator.types.IntegerGenerator;
 
 
 
@@ -23,7 +23,7 @@ public class DataConfigurationToolsTest {
 	@Test
 	public void testConfigure (){
 		
-		IntegerDataGenerator integerDataGenerator = new IntegerDataGenerator ();
+		IntegerGenerator integerDataGenerator = new IntegerGenerator ();
 		
 		
 		Assert.assertEquals(new Integer(1000), integerDataGenerator.getStartInclusive());
