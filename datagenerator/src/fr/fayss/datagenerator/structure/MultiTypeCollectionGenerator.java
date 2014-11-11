@@ -10,16 +10,16 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
-public class CollectionDataGenerator implements DataGenerator{
+public class MultiTypeCollectionGenerator implements DataGenerator{
 
 	public Collection<DataGenerator> mDataList ;
 	public @Getter @Setter String mSeparator = "," ;
 
-	public CollectionDataGenerator (Collection<DataGenerator> pDatalist){
+	public MultiTypeCollectionGenerator (Collection<DataGenerator> pDatalist){
 		mDataList = pDatalist ;
 	}
 	
-	public CollectionDataGenerator ( Collection<DataGenerator> pDataList,String pSeparator){
+	public MultiTypeCollectionGenerator ( Collection<DataGenerator> pDataList,String pSeparator){
 		mDataList = pDataList ;
 		if (mSeparator != null){
 			mSeparator = pSeparator ;

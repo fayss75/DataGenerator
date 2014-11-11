@@ -1,6 +1,7 @@
 package fr.fayss.datagenerator.types;
 
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
-public @Getter @Setter  class IntegerDataGenerator implements DataGenerator {
+public @Getter @Setter  class IntegerGenerator implements DataGenerator {
 
 	// the min value that can be generated
 	private Integer mStartInclusive = 1000;
@@ -29,4 +30,5 @@ public @Getter @Setter  class IntegerDataGenerator implements DataGenerator {
 		
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
+	
 }

@@ -7,9 +7,9 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
-public class TreeDataGenerator extends CollectionDataGenerator{
+public class TreeGenerator extends MultiTypeCollectionGenerator{
 
-	public TreeDataGenerator(Collection<DataGenerator> pChild,DataGenerator pNode,
+	public TreeGenerator(Collection<DataGenerator> pChild,DataGenerator pNode,
 			String pSeparator) {
 		super(pChild);
 		// TODO Auto-generated constructor stub

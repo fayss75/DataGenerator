@@ -1,6 +1,7 @@
 package fr.fayss.datagenerator;
 
 
+
 /**
  * interface of all data generators
  * 
@@ -12,6 +13,5 @@ public interface DataGenerator {
 	
 	public Object generate ();
 	
-	
-	public void configure (DataConfiguration pDataconfig) throws PropertyConfigurationException ;
+	public void configure ( DataConfiguration pDataconfig) throws PropertyConfigurationException ;
 }

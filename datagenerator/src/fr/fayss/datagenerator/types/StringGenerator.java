@@ -1,6 +1,7 @@
 package fr.fayss.datagenerator.types;
 
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,11 +12,10 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
-public  @Getter @Setter  class StringDataGenerator implements DataGenerator{
+public  @Getter @Setter  class StringGenerator implements DataGenerator{
 
 	// define the size of the generated string 	
 	private  Integer mStringLength = 5 ;
-
 
 
 	@Override

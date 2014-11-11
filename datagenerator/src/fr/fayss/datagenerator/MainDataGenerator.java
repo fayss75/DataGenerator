@@ -6,11 +6,11 @@ import java.util.List;
 
 
 import fr.fayss.datagenerator.atg.ItemDescriptorIdGenerator;
-import fr.fayss.datagenerator.atg.PropertyDataGenerator;
-import fr.fayss.datagenerator.atg.RepositoryItemDataGenerator;
-import fr.fayss.datagenerator.types.DoubleDataGenerator;
-import fr.fayss.datagenerator.types.IntegerDataGenerator;
-import fr.fayss.datagenerator.types.StringDataGenerator;
+import fr.fayss.datagenerator.atg.PropertyGenerator;
+import fr.fayss.datagenerator.atg.RepositoryItemGenerator;
+import fr.fayss.datagenerator.types.DoubleGenerator;
+import fr.fayss.datagenerator.types.IntegerGenerator;
+import fr.fayss.datagenerator.types.StringGenerator;
 
 
 /**
@@ -29,14 +29,15 @@ public class MainDataGenerator {
 		//testException();
 	}
 	
-	public static List<DataGenerator> propertyBuilder () {
+	public static List<PropertyGenerator> propertyBuilder () {
 		
-		ArrayList<DataGenerator> dgList = new ArrayList<DataGenerator>();
-		StringDataGenerator sdg = new StringDataGenerator();
-		dgList.add(new PropertyDataGenerator("prop1", sdg));
-		dgList.add(new PropertyDataGenerator("prop2", sdg));
-		dgList.add(new PropertyDataGenerator("doubleProperty", new DoubleDataGenerator()));
-		dgList.add(new PropertyDataGenerator("intProperty", new IntegerDataGenerator()));
+		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
+		StringGenerator sdg = new StringGenerator();
+		dgList.add(new PropertyGenerator("prop1", sdg));
+		dgList.add(new PropertyGenerator("prop2", sdg));
+		dgList.add(new PropertyGenerator("default"));
+		dgList.add(new PropertyGenerator("doubleProperty", new DoubleGenerator()));
+		dgList.add(new PropertyGenerator("intProperty", new IntegerGenerator()));
 		
 		return dgList ;
 		
@@ -45,7 +46,7 @@ public class MainDataGenerator {
 	public static void testException(){
 		
 		
-IntegerDataGenerator integerDataGenerator = new IntegerDataGenerator ();
+IntegerGenerator integerDataGenerator = new IntegerGenerator ();
 
 
 System.out.println("avant :" + integerDataGenerator.getStartInclusive());
@@ -60,9 +61,9 @@ System.out.println("avant :" + integerDataGenerator.getStartInclusive());
 		
 		
 	}
-	public static RepositoryItemDataGenerator createSkuGen (){
+	public static RepositoryItemGenerator createSkuGen (){
 		
-		DataGenerator idgenerator = new ItemDescriptorIdGenerator();
+		ItemDescriptorIdGenerator idgenerator = new ItemDescriptorIdGenerator();
 		try {
 			DataConfigurationTools.configure(idgenerator, "prefix", "sku");
 		} catch (PropertyConfigurationException e) {
@@ -70,7 +71,8 @@ System.out.println("avant :" + integerDataGenerator.getStartInclusive());
 		}
 		
 		
-		return  new RepositoryItemDataGenerator("sku", propertyBuilder(), idgenerator) ;
+		//return  new RepositoryItemGenerator("sku", propertyBuilder(), idgenerator) ;
+		return  new RepositoryItemGenerator("sku", propertyBuilder()) ;
 	}
 
 }

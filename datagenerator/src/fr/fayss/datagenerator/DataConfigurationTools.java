@@ -29,7 +29,7 @@ public class DataConfigurationTools {
 
 		try {
 			
-			// add the get because set property doesn't throw an expeption if the property doesn't exist ..
+			// add the getProperty method because setProperty doesn't throw  exceptions if the property doesn't exist ..
 			BeanUtils.getProperty(pDataGen, PropertyName);
 			BeanUtils.setProperty(pDataGen, PropertyName, propertyValue);
 

@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package fr.fayss.datagenerator.types;
 
 import java.math.BigDecimal;
@@ -14,28 +17,25 @@ import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
 /**
- * Class that handle Double data generation
- * 
- * 
  * @author fayss
  *
  */
-public @Getter @Setter class DoubleDataGenerator implements DataGenerator {
-
+public @Getter @Setter class FloatGenerator implements DataGenerator {
+	
+	
 	// the min value that can be generated
-	private Double mStartInclusive = 1000d;
+	private Float mStartInclusive = 1000f;
 	
 	// the max value that can be generated
-	private Double mEndInclusive = 9000d;
+	private Float mEndInclusive = 9000f;
 	
 	// number of decimals
-	private Integer mScale = 2 ;
-	
+	private int mScale = 2 ;
+
 	@Override
 	public Object generate() {
-		
-		Double result = RandomUtils.nextDouble(getStartInclusive(), getEndInclusive());
-		return new BigDecimal(result).setScale(getScale(), RoundingMode.HALF_UP).doubleValue();
+		Float result =  RandomUtils.nextFloat(getStartInclusive(), getEndInclusive());
+		return new BigDecimal(result).setScale(getScale(), RoundingMode.HALF_UP).floatValue();
 	}
 
 	@Override
@@ -43,4 +43,6 @@ public @Getter @Setter class DoubleDataGenerator implements DataGenerator {
 		
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
+	
+
 }
