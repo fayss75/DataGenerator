@@ -16,17 +16,19 @@ public  @Getter @Setter  class StringGenerator implements DataGenerator{
 
 	// define the size of the generated string 	
 	private  Integer mStringLength = 5 ;
-
+	private String mPrefix="";
+	private String mSuffix="";
 
 	@Override
 	public Object generate() {
-
-		return RandomStringUtils.random(getStringLength(),true,true);
+		StringBuilder sb = new StringBuilder();
+		return sb.append(getPrefix()).
+				append(RandomStringUtils.random(getStringLength(),true,false)).
+				append(getSuffix()).toString();
 	}
 	
 	@Override
 	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
-		
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
 }

@@ -10,7 +10,7 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
-public class MultiTypeCollectionGenerator implements DataGenerator{
+public class MultiTypeCollectionGenerator implements CollectionGenerator{
 
 	public Collection<DataGenerator> mDataList ;
 	public @Getter @Setter String mSeparator = "," ;
@@ -38,7 +38,7 @@ public class MultiTypeCollectionGenerator implements DataGenerator{
 			sb.append(dataIter.next().generate());
 			
 			if (dataIter.hasNext()){
-				sb.append(mSeparator);
+				sb.append(getSeparator());
 			}
 		}
 

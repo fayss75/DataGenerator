@@ -19,11 +19,12 @@ public interface DataFormatter extends DataGenerator {
 	 *  "The Generated Value is 5."
 	 *  "The Generated Value is 17."
 	 *  
-	 * Calling the method generate (19)  should garranty that  the result is :
+	 * Calling the method generate (19)  garranties that  the result is :
 	 *  "The Generated Value is 19."
 	 * @param pDataValue
 	 * @return
 	 */
-	public Object generate (Object pDataValue);
+	public Object getValue();
+	public void setValue(Object pValue);
 
 }

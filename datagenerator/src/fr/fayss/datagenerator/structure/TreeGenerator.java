@@ -7,6 +7,11 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
+/**
+ * TODO 
+ * @author fayss
+ *
+ */
 public class TreeGenerator extends MultiTypeCollectionGenerator{
 
 	public TreeGenerator(Collection<DataGenerator> pChild,DataGenerator pNode,

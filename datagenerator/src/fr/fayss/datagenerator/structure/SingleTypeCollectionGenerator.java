@@ -15,7 +15,7 @@ import fr.fayss.datagenerator.PropertyValueException;
  * @author fayss
  *
  */
-public  @Getter @Setter class SingleTypeCollectionGenerator implements DataGenerator {
+public  @Getter @Setter class SingleTypeCollectionGenerator implements CollectionGenerator {
 	
 	
 	public int mQuantity = 5 ;

@@ -33,8 +33,9 @@ public @Getter @Setter class RepositoryItemGenerator implements DataFormatter{
 	private List<PropertyGenerator> mPropertyList ;
 
 	private ItemDescriptorIdGenerator mIdGenerator ;
+	private Object mValue = null;
 
-	private static final String DEFAULT_ID_GENERATOR = "fr.fayss.datagenerator.atg.ItemDescriptorIdGenerator";
+	private static final Class<? extends ItemDescriptorIdGenerator>  DEFAULT_ID_GENERATOR =  ItemDescriptorIdGenerator.class;
 
 
 	public RepositoryItemGenerator (String pItemName,List<PropertyGenerator> propertyList ,ItemDescriptorIdGenerator pIdGenerator ) {
@@ -48,50 +49,56 @@ public @Getter @Setter class RepositoryItemGenerator implements DataFormatter{
 	public RepositoryItemGenerator (String pItemName,List<PropertyGenerator> pPropertyList ) {
 		mItemName = pItemName;
 		mPropertyList = pPropertyList;
-		try {
-			mIdGenerator = (ItemDescriptorIdGenerator) Class.forName(DEFAULT_ID_GENERATOR).newInstance();
-		} catch (InstantiationException ie) {
-			throw new InternalException(ie);
-		} catch (IllegalAccessException iae) {
-			throw new InternalException(iae);
-		} catch (ClassNotFoundException cnfe) {
-			throw new InternalException(cnfe);
-		}
+			try {
+				mIdGenerator = DEFAULT_ID_GENERATOR.newInstance();
+			} catch (InstantiationException | IllegalAccessException ex) {
+				throw new InternalException(ex);
+			}
+
 
 	}
 
+	public void generateStartAddItemTag (StringBuilder pStringBuilder) {
+
+		pStringBuilder.append("<add-item item-descriptor=\"").append(mItemName);
+
+		if (getValue() == null){
+			pStringBuilder.append("\" id=\"").append(getIdGenerator().generate());
+		} else {
+			pStringBuilder.append("\" id=\"").append(getValue());
+		}
+
+		pStringBuilder.append("\">\n");
+	}
+
+	
 	public void generateProperty (StringBuilder pStringBuilder) {
 		for (DataGenerator property : getPropertyList()) {
 			pStringBuilder.append(property.generate());
 		}
 	}
+	
+	public void generateEndAddItemTag (StringBuilder pStringBuilder) {
+		pStringBuilder.append("</add-item>\n");
+	}
+
 
 
 
 	@Override
 	public Object generate() {
-		return generate(null);
-	}
-
-	@Override
-	public Object generate(Object RepositoryId) {
+		
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<add-item item-descriptor=\"").append(mItemName);
-
-		if (RepositoryId == null){
-			sb.append("\" id=\"").append(getIdGenerator().generate());
-		} else {
-			sb.append("\" id=\"").append(RepositoryId);
-		}
-
-		sb.append("\">\n");
+		generateStartAddItemTag (sb);
 
 		generateProperty (sb);
 
-		sb.append("</add-item>\n");
+		generateEndAddItemTag (sb);
+		
 		return sb.toString();
 	}
+
 
 
 	@Override

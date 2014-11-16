@@ -13,11 +13,8 @@ import fr.fayss.datagenerator.types.IntegerGenerator;
  */
 public @Getter @Setter class ItemDescriptorIdGenerator extends IntegerGenerator {
 	
-	
 	private String mPrefix="";
 	private String mSuffix="";
-	
-	
 
 	@Override
 	public Object generate() {

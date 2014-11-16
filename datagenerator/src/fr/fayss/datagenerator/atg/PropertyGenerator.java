@@ -7,6 +7,8 @@ import fr.fayss.datagenerator.DataConfiguration;
 import fr.fayss.datagenerator.DataFormatter;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.InternalException;
+import fr.fayss.datagenerator.PropertyValueException;
+import fr.fayss.datagenerator.types.StringGenerator;
 
 /**
  * Generate a property of an itemDescriptor
@@ -17,26 +19,31 @@ import fr.fayss.datagenerator.InternalException;
 public @Getter @Setter class PropertyGenerator implements DataFormatter{
 
 
-	private  DataGenerator  mDataTypeGenerator ;
-	private  String  mPropertyName;
+	private DataGenerator  mDataTypeGenerator ;
+	private String  mPropertyName;
+	private Object mValue = null;
 
-	private static final String DEFAULT_DATAGENERATOR = "fr.fayss.datagenerator.types.StringGenerator";
+	private static final Class<? extends DataGenerator> DEFAULT_DATAGENERATOR = StringGenerator.class;
 
-	public PropertyGenerator (String pPropertyName){
-		mPropertyName = pPropertyName;
+	
+	public PropertyGenerator (){
 		try {
-			mDataTypeGenerator = (DataGenerator) Class.forName(DEFAULT_DATAGENERATOR).newInstance();
-
-		} catch (ClassNotFoundException cnfe) {
-			throw new InternalException(cnfe);
-		} catch (InstantiationException ie) {
-			throw new InternalException(ie);
-		} catch (IllegalAccessException iae) {
-			throw new InternalException(iae);
+			mPropertyName = "PROPERTY_NAME";
+			mDataTypeGenerator =  DEFAULT_DATAGENERATOR.newInstance();
+		} catch (InstantiationException | IllegalAccessException ex) {
+			throw new InternalException(ex);
 		}
-
 	}
-
+	
+	public PropertyGenerator (String pPropertyName){
+			try {
+				mPropertyName = pPropertyName;
+				mDataTypeGenerator =  DEFAULT_DATAGENERATOR.newInstance();
+			} catch (InstantiationException | IllegalAccessException ex) {
+				throw new InternalException(ex);
+			}
+	}
+	
 	public PropertyGenerator (String pPropertyName, DataGenerator pDataGenerator){
 		mDataTypeGenerator = pDataGenerator ;
 		mPropertyName = pPropertyName;
@@ -45,24 +52,26 @@ public @Getter @Setter class PropertyGenerator implements DataFormatter{
 
 	@Override
 	public Object generate() {
-		return  generate(null) ;
-	}
-
-	@Override
-	public Object generate(Object pvalues) {
-
-		Object result = pvalues ;
-		if(pvalues == null) {
+		
+		Object result = null;
+		
+		if(getValue() != null) {
+			result = getValue();
+		} else if (getDataTypeGenerator() != null){
 			result = getDataTypeGenerator().generate();
+		} else {
+			throw new PropertyValueException("Value and DataTypeGenerator properties can not be both null");
 		}
 
+		
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("\t<set-property name=\"").append(mPropertyName).append("\">")
+		sb.append("\t<set-property name=\"").append(getPropertyName()).append("\">")
 		.append(result).append("</set-property>\n");
 
 		return sb.toString();
 	}
+
 
 
 
