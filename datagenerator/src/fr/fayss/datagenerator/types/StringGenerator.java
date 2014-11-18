@@ -1,7 +1,5 @@
 package fr.fayss.datagenerator.types;
 
-
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,13 +10,32 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
-public  @Getter @Setter  class StringGenerator implements DataGenerator{
+/**
+ * Generate a String 
+ * 
+ * @author fayss
+ */
+public @Getter @Setter class StringGenerator implements DataGenerator{
 
-	// define the size of the generated string 	
+	/** 
+	 * Define the length of the generated string 
+	 * Default value is 5
+	 */ 	
 	private  Integer mStringLength = 5 ;
+	
+	/**
+	 *  Define a static prefix that the generated string starts with
+	 *  Default value is empty string
+	 */
 	private String mPrefix="";
+	
+	/**
+	 *  Define a static suffix that the generated string end with
+	 *  Default value is empty string
+	 */
 	private String mSuffix="";
 
+	
 	@Override
 	public Object generate() {
 		StringBuilder sb = new StringBuilder();

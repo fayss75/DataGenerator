@@ -8,7 +8,8 @@ import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
 /**
- * TODO 
+ * Not used for now
+ *  
  * @author fayss
  *
  */

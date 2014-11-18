@@ -8,6 +8,7 @@ import lombok.Setter;
 import fr.fayss.datagenerator.types.IntegerGenerator;
 
 /**
+ * 
  * @author fayss
  *
  */

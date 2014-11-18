@@ -10,21 +10,33 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
+
+/**
+ * Generate a list of generated data. All data use different DataGenerator class
+ * We insert a separator string between each data.
+ * 
+ * @author fayss
+ *
+ */
 public class MultiTypeCollectionGenerator implements CollectionGenerator{
 
-	public Collection<DataGenerator> mDataList ;
-	public @Getter @Setter String mSeparator = "," ;
+	/**  Define the collection of data generator */
+	private Collection<DataGenerator> mDataList ;
+	
+	/**
+	 * define the separator between generated datas 
+	 * default separator is "," 
+	 */
+	private @Getter @Setter String mSeparator = "," ;
 
+	/**
+	 * Constructor
+	 * @param pDatalist the collection of data generator
+	 */
 	public MultiTypeCollectionGenerator (Collection<DataGenerator> pDatalist){
 		mDataList = pDatalist ;
 	}
 	
-	public MultiTypeCollectionGenerator ( Collection<DataGenerator> pDataList,String pSeparator){
-		mDataList = pDataList ;
-		if (mSeparator != null){
-			mSeparator = pSeparator ;
-		}
-	}
 
 	@Override
 	public Object generate() {

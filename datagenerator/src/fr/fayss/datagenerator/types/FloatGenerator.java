@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.fayss.datagenerator.types;
 
 import java.math.BigDecimal;
@@ -17,19 +14,28 @@ import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
 /**
+ * Generates a Float number
+ * 
  * @author fayss
- *
  */
 public @Getter @Setter class FloatGenerator implements DataGenerator {
 	
-	
-	// the min value that can be generated
+	/**
+	 * Define the minimum value that can be generated
+	 * Default value is 1000f
+	 */
 	private Float mStartInclusive = 1000f;
 	
-	// the max value that can be generated
+	/**
+	 * Define the maximum value that can be generated
+	 * Default value is 9000f
+	 */
 	private Float mEndInclusive = 9000f;
 	
-	// number of decimals
+	/**
+	 * Define the number of decimals
+	 * Default value is 2
+	 */
 	private int mScale = 2 ;
 
 	@Override

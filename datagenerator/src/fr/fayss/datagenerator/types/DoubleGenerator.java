@@ -13,21 +13,28 @@ import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 
 /**
- * Class that handle Double data generation
- * 
+ * Generates a Double number
  * 
  * @author fayss
- *
  */
 public @Getter @Setter class DoubleGenerator implements DataGenerator {
 
-	// the min value that can be generated
+	/**
+	 * Define the minimum value that can be generated
+	 * Default value is 1000d
+	 */
 	private Double mStartInclusive = 1000d;
 	
-	// the max value that can be generated
+	/**
+	 * Define the max value that can be generated
+	 * Default value is 9000d
+	 */
 	private Double mEndInclusive = 9000d;
 	
-	// number of decimals
+	/**
+	 * Define the number of decimals
+	 * Default value is 2
+	 */
 	private Integer mScale = 2 ;
 	
 	@Override
