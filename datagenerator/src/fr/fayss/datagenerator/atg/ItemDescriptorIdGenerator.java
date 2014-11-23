@@ -8,13 +8,17 @@ import lombok.Setter;
 import fr.fayss.datagenerator.types.IntegerGenerator;
 
 /**
- * 
+ * Generate a repositoryId
+ * By default it generate an integer, without prefix and suffix
  * @author fayss
  *
  */
 public @Getter @Setter class ItemDescriptorIdGenerator extends IntegerGenerator {
 	
+	/** Define the prefix of the generated id */
 	private String mPrefix="";
+	
+	/** Define the suffic of the generated id */
 	private String mSuffix="";
 
 	@Override

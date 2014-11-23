@@ -4,9 +4,9 @@
 package fr.fayss.datagenerator;
 
 /**
- * @author fayss
  * This exception should never be thrown, if this is the case its means that there is a bug somewhere in the framework
  *
+ * @author fayss
  */
 public class InternalException extends RuntimeException {
 	

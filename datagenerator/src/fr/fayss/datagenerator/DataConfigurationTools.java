@@ -1,13 +1,23 @@
 package fr.fayss.datagenerator;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+/**
+ * Data configuration Tools
+ * @author fayss
+ *
+ */
 public class DataConfigurationTools {
 
 
+	/**
+	 * Change the propertie's value of the data generator by using the Data config property
+	 * @param pDataGen the data generator
+	 * @param pDataconfig the data configuration to use
+	 * @throws PropertyConfigurationException
+	 */
 	public static void configure ( DataGenerator pDataGen,DataConfiguration pDataconfig)
 			throws PropertyConfigurationException {
 
@@ -18,10 +28,10 @@ public class DataConfigurationTools {
 	}
 
 	/**
-	 * 
-	 * @param pDataGen
-	 * @param PropertyName
-	 * @param propertyValue
+	 * Change the value of a specific property of the data generator
+	 * @param pDataGen the data generator 
+	 * @param PropertyName the property name ,must be defined in the data generator) 
+	 * @param propertyValue the value to set
 	 * @throws PropertyConfigurationException
 	 */
 	public static void configure(DataGenerator pDataGen, String PropertyName, Object propertyValue ) 
@@ -40,25 +50,6 @@ public class DataConfigurationTools {
 		} catch (NoSuchMethodException e) {
 			throw new PropertyConfigurationException("Property " + PropertyName + " not found in data generator " + pDataGen.getClass());
 		}
-
-
 	}
-
-	/**
-	 * 
-	 * @param pDataGen
-	 * @param pProperties
-	 * @throws PropertyConfigurationException
-	 */
-	public static void configure(DataGenerator pDataGen, Map<String, Object> pProperties ) 
-			throws PropertyConfigurationException {
-
-			for (String key: pProperties.keySet()) {
-				configure(pDataGen, key,pProperties.get(key));
-			}
-	}
-
-
-
 
 }

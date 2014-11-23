@@ -14,7 +14,7 @@ import fr.fayss.datagenerator.types.StringGenerator;
 
 
 /**
- * this is a sample class
+ * Sample class
  * 
  * @author fayss
  *
