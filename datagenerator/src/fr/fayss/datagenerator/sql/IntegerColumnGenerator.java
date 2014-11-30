@@ -1,13 +1,7 @@
-/**
- * 
- */
 package fr.fayss.datagenerator.sql;
 
 import lombok.Getter;
 import lombok.Setter;
-import fr.fayss.datagenerator.DataConfiguration;
-import fr.fayss.datagenerator.DataConfigurationTools;
-import fr.fayss.datagenerator.PropertyConfigurationException;
 import fr.fayss.datagenerator.types.IntegerGenerator;
 
 /**
@@ -35,12 +29,5 @@ public @Getter @Setter class IntegerColumnGenerator extends IntegerGenerator imp
 			return mValue;
 		}
 	}
-
-	@Override
-	public void configure(DataConfiguration pDataconfig)
-			throws PropertyConfigurationException {
-		DataConfigurationTools.configure(this, pDataconfig);
-	}
-
 
 }
