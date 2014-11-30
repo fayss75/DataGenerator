@@ -48,4 +48,5 @@ public @Getter @Setter class StringGenerator implements DataGenerator{
 	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
+
 }

@@ -9,6 +9,7 @@ import fr.fayss.datagenerator.DataConfiguration;
 import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
+import fr.fayss.datagenerator.PropertyValueException;
 
 
 /**
@@ -21,7 +22,7 @@ import fr.fayss.datagenerator.PropertyConfigurationException;
 public class MultiTypeCollectionGenerator implements CollectionGenerator{
 
 	/**  Define the collection of data generator */
-	private Collection<DataGenerator> mDataList ;
+	private @Getter @Setter Collection<DataGenerator> mDataList ;
 	
 	/**
 	 * define the separator between generated datas 
@@ -40,6 +41,11 @@ public class MultiTypeCollectionGenerator implements CollectionGenerator{
 
 	@Override
 	public Object generate() {
+		
+		
+		if( mDataList == null){
+			throw new PropertyValueException ("property datalist can not be null") ;
+		}
 
 		StringBuilder sb = new StringBuilder();
 		

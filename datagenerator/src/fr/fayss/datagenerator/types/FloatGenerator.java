@@ -40,6 +40,7 @@ public @Getter @Setter class FloatGenerator implements DataGenerator {
 
 	@Override
 	public Object generate() {
+		
 		Float result =  RandomUtils.nextFloat(getStartInclusive(), getEndInclusive());
 		return new BigDecimal(result).setScale(getScale(), RoundingMode.HALF_UP).floatValue();
 	}

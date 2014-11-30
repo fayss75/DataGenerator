@@ -22,22 +22,23 @@ public @Getter @Setter class IntegerGenerator implements DataGenerator {
 	 * Default value is 1000
 	 */
 	private Integer mStartInclusive = 1000;
-	
+
 	/**
 	 * Define the maximu value that can be generated
 	 * Default value is 9000
 	 */
 	private Integer mEndInclusive = 9000;
-	
+
 	@Override
 	public Object generate() {
-		return RandomUtils.nextInt(getStartInclusive(), getEndInclusive());
+			return RandomUtils.nextInt(getStartInclusive(), getEndInclusive());
 	}
-	
+
 	@Override
 	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
-		
+
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
-	
+
+
 }

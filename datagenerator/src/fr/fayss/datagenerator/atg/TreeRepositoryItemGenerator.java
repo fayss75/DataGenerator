@@ -29,7 +29,7 @@ public @Getter @Setter class TreeRepositoryItemGenerator extends RepositoryItemG
 	private Integer mNbChild = 3;
 	
 	/** 
-	 * Defaint the depht of the tree 
+	 * Define the depth of the tree 
 	 * Default value is 3*/
 	private Integer mDepth = 3 ;
 	

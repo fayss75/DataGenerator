@@ -23,7 +23,16 @@ public class DataConfigurationToolsTest {
 	@Test
 	public void testConfigure (){
 		
-		IntegerGenerator integerDataGenerator = new IntegerGenerator ();
+		IntegerGenerator integerDataGenerator=null;
+		try {
+			integerDataGenerator = IntegerGenerator.class.newInstance();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		Assert.assertEquals(new Integer(1000), integerDataGenerator.getStartInclusive());
