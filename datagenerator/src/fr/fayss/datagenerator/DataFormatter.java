@@ -20,6 +20,9 @@ package fr.fayss.datagenerator;
  *
  */
 public interface DataFormatter extends DataGenerator {
+	
+	
+	public static final String VALUE_PROP = "value";
 
 	/**
 	 * @return value property
