@@ -19,7 +19,7 @@ import fr.fayss.datagenerator.PropertyValueException;
  * @author fayss
  *
  */
-public class MultiTypeCollectionGenerator implements CollectionGenerator{
+public class ComplexCollectionGenerator implements CollectionGenerator{
 
 	/**  Define the collection of data generator */
 	private @Getter @Setter Collection<DataGenerator> mDataList ;
@@ -34,7 +34,7 @@ public class MultiTypeCollectionGenerator implements CollectionGenerator{
 	 * Constructor
 	 * @param pDatalist the collection of data generator
 	 */
-	public MultiTypeCollectionGenerator (Collection<DataGenerator> pDatalist){
+	public ComplexCollectionGenerator (Collection<DataGenerator> pDatalist){
 		mDataList = pDatalist ;
 	}
 	

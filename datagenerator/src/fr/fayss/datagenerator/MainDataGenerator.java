@@ -12,9 +12,13 @@ import java.util.List;
 
 
 
+
+
 import fr.fayss.datagenerator.atg.PropertyGenerator;
 import fr.fayss.datagenerator.atg.RepositoryItemGenerator;
 import fr.fayss.datagenerator.atg.ReferencePropertyGenerator;
+import fr.fayss.datagenerator.structure.CollectionGenerator;
+import fr.fayss.datagenerator.structure.SimpleCollectionGenerator;
 import fr.fayss.datagenerator.structure.TreeGenerator;
 import fr.fayss.datagenerator.types.DoubleGenerator;
 import fr.fayss.datagenerator.types.IntegerGenerator;
@@ -66,33 +70,42 @@ public class MainDataGenerator {
 		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
 		StringGenerator stringGenerator = new StringGenerator();
 		
-		RepositoryItemGenerator skuGenerator = new RepositoryItemGenerator("sku", skupropertyBuilder()) ;
-		
-		DataGenerator refDataGenerator = new ReferencePropertyGenerator(skuGenerator);
-		
-	//	SingleTypeCollectionGenerator collectionGen = new SingleTypeCollectionGenerator (refDataGenerator) ;
-		TreeGenerator collectionGen = new TreeGenerator(skuGenerator);
-		
-		dgList.add(new PropertyGenerator("prop1", stringGenerator));
-		dgList.add(new PropertyGenerator("prop2", stringGenerator));
-		dgList.add(new PropertyGenerator("default"));
-		dgList.add(new PropertyGenerator("doubleProperty", new DoubleGenerator()));
-		dgList.add(new PropertyGenerator("intProperty", new IntegerGenerator()));
-	//	dgList.add(new PropertyGenerator("skus", collectionGen));
+		dgList.add(new PropertyGenerator("prdString1", stringGenerator));
+		dgList.add(new PropertyGenerator("prdString2", stringGenerator));
+		dgList.add(new PropertyGenerator("prddefault"));
+		dgList.add(new PropertyGenerator("prddoubleProperty", new DoubleGenerator()));
+		dgList.add(new PropertyGenerator("prdintProperty", new IntegerGenerator()));
 
 		return dgList ;
 
 	}
 	
+	
+	public static List<PropertyGenerator> catpropertyBuilder () {
+
+		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
+		StringGenerator stringGenerator = new StringGenerator();
+		
+		dgList.add(new PropertyGenerator("catString1", stringGenerator));
+		dgList.add(new PropertyGenerator("catString2", stringGenerator));
+		dgList.add(new PropertyGenerator("catdefault"));
+		dgList.add(new PropertyGenerator("catdoubleProperty", new DoubleGenerator()));
+		dgList.add(new PropertyGenerator("catintProperty", new IntegerGenerator()));
+
+		return dgList ;
+
+	}	
+	
+	
 	public static List<PropertyGenerator> skupropertyBuilder () {
 
 		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
 		StringGenerator stringGenerator = new StringGenerator();
-		dgList.add(new PropertyGenerator("prop1", stringGenerator));
-		dgList.add(new PropertyGenerator("prop2", stringGenerator));
-		dgList.add(new PropertyGenerator("default"));
-		dgList.add(new PropertyGenerator("doubleProperty", new DoubleGenerator()));
-		dgList.add(new PropertyGenerator("intProperty", new IntegerGenerator()));
+		dgList.add(new PropertyGenerator("skuString1", stringGenerator));
+		dgList.add(new PropertyGenerator("skuString2", stringGenerator));
+		dgList.add(new PropertyGenerator("skudefault"));
+		dgList.add(new PropertyGenerator("skudoubleProperty", new DoubleGenerator()));
+		dgList.add(new PropertyGenerator("skuintProperty", new IntegerGenerator()));
 
 		return dgList ;
 
@@ -122,16 +135,38 @@ public class MainDataGenerator {
 	}
 	
 	public static RepositoryItemGenerator createProductGen (){
-
+		
+		
+		RepositoryItemGenerator skuGen =  new RepositoryItemGenerator("sku", skupropertyBuilder()) ;
+		skuGen.getIdGenerator().setPrefix("sku");
+	
 		RepositoryItemGenerator prdGen =  new RepositoryItemGenerator("product", productpropertyBuilder()) ;
+		prdGen.getIdGenerator().setPrefix("prd");
+		ReferenceDataGenerator refDataGenerator = new ReferencePropertyGenerator(skuGen,"childSkus");
+		CollectionGenerator treeGen = new SimpleCollectionGenerator(refDataGenerator);
+		prdGen.getPropertyList().add(new PropertyGenerator("childSkus", treeGen));
 		
-		DataGenerator refDataGenerator = new ReferencePropertyGenerator(prdGen);
+		
+		RepositoryItemGenerator catGen =  new RepositoryItemGenerator("category", catpropertyBuilder()) ;
+		catGen.getIdGenerator().setPrefix("cat");
+		ReferenceDataGenerator refCatDataGenerator = new ReferencePropertyGenerator(catGen,"childCategories");
+		TreeGenerator treeCatGen = new TreeGenerator(refCatDataGenerator);
+		treeCatGen.setNbChild(2);
+		treeCatGen.setDepth(1);
+		catGen.getPropertyList().add(new PropertyGenerator("childCategories", treeCatGen));
+		
+		ReferenceDataGenerator refPrdDataGenerator = new ReferencePropertyGenerator(prdGen,"childProducts");
+		CollectionGenerator treePrdGen = new SimpleCollectionGenerator(refPrdDataGenerator);
+		catGen.getPropertyList().add(new PropertyGenerator("childProducts", treePrdGen));		
+
 		
 
-		TreeGenerator treeGen = new TreeGenerator(refDataGenerator);
+		
 
-		prdGen.getPropertyList().add(new PropertyGenerator("prd", treeGen));
-		return prdGen;
+
+
+
+		return catGen;
 	}
 
 }

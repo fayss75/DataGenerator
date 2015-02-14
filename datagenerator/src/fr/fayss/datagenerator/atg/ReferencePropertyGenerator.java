@@ -7,30 +7,29 @@ import lombok.Getter;
 import lombok.Setter;
 import fr.fayss.datagenerator.DataConfiguration;
 import fr.fayss.datagenerator.DataConfigurationTools;
-import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.GenerationBuffer;
 import fr.fayss.datagenerator.PropertyConfigurationException;
+import fr.fayss.datagenerator.ReferenceDataGenerator;
 
 /**
  * @author fayss
  *
  */
-public @Getter @Setter class ReferencePropertyGenerator implements DataGenerator{
+public @Getter @Setter class ReferencePropertyGenerator implements ReferenceDataGenerator {
 
 
 
 	private RepositoryItemGenerator mRepositoryItemGenerator ;
-	private ItemDescriptorIdGenerator  mIdGenerator;
-
-
-
+	private ItemDescriptorIdGenerator  mReferenceIdGenerator;
+	private String mReferenceKey;
+	
 	/**
 	 * Constructor
 	 */
-	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ){
+	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator,String pRefKey ){
 		mRepositoryItemGenerator = pRepositoryItemGenerator; 
-		mIdGenerator = getRepositoryItemGenerator().getIdGenerator() ;
-
+		mReferenceIdGenerator = getRepositoryItemGenerator().getIdGenerator() ;
+		mReferenceKey = pRefKey;
 	}
 
 
@@ -40,7 +39,7 @@ public @Getter @Setter class ReferencePropertyGenerator implements DataGenerator
 	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ,
 			ItemDescriptorIdGenerator  pDataTypeGenerator ){
 		mRepositoryItemGenerator = pRepositoryItemGenerator; 
-		mIdGenerator = pDataTypeGenerator ;
+		mReferenceIdGenerator = pDataTypeGenerator ;
 
 	}
 
@@ -50,7 +49,7 @@ public @Getter @Setter class ReferencePropertyGenerator implements DataGenerator
 	@Override
 	public Object generate() {
 
-		Object repositoryId = getIdGenerator().generate();
+		Object repositoryId = getReferenceIdGenerator().generate();
 		
 		GenerationBuffer genBuffer = GenerationBuffer.getInstance();
 		
