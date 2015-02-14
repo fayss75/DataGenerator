@@ -8,8 +8,14 @@ import java.util.List;
 
 
 
+
+
+
+
 import fr.fayss.datagenerator.atg.PropertyGenerator;
 import fr.fayss.datagenerator.atg.RepositoryItemGenerator;
+import fr.fayss.datagenerator.atg.ReferencePropertyGenerator;
+import fr.fayss.datagenerator.structure.TreeGenerator;
 import fr.fayss.datagenerator.types.DoubleGenerator;
 import fr.fayss.datagenerator.types.IntegerGenerator;
 import fr.fayss.datagenerator.types.StringGenerator;
@@ -25,15 +31,60 @@ public class MainDataGenerator {
 
 
 	public static void main(String[] args) {
-		DataGenerator skuGen = createSkuGen ();
+		
+		
+		
+		
+		DataGenerator productGen = createProductGen ();
 
-		System.out.println(skuGen.generate());
-		System.out.println(skuGen.generate());
+		System.out.println(productGen.generate());
+		
+		GenerationBuffer buffer = 
+		GenerationBuffer.getInstance();
+		
+		while (buffer.hasNext()){
+			
+			DataConfiguration config = buffer.popItem();
+			
+			try {
+				DataConfigurationTools.configure(config);
+			} catch (PropertyConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println(((DataGenerator)config.getPropertyConfiguration(DataConfigurationTools.DATA_GENERATOR_INSTANCE)).generate());
+		}
+		
+		
 		//testException();
 	}
 
 
-	public static List<PropertyGenerator> propertyBuilder () {
+	public static List<PropertyGenerator> productpropertyBuilder () {
+
+		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
+		StringGenerator stringGenerator = new StringGenerator();
+		
+		RepositoryItemGenerator skuGenerator = new RepositoryItemGenerator("sku", skupropertyBuilder()) ;
+		
+		DataGenerator refDataGenerator = new ReferencePropertyGenerator(skuGenerator);
+		
+	//	SingleTypeCollectionGenerator collectionGen = new SingleTypeCollectionGenerator (refDataGenerator) ;
+		TreeGenerator collectionGen = new TreeGenerator(skuGenerator);
+		
+		dgList.add(new PropertyGenerator("prop1", stringGenerator));
+		dgList.add(new PropertyGenerator("prop2", stringGenerator));
+		dgList.add(new PropertyGenerator("default"));
+		dgList.add(new PropertyGenerator("doubleProperty", new DoubleGenerator()));
+		dgList.add(new PropertyGenerator("intProperty", new IntegerGenerator()));
+	//	dgList.add(new PropertyGenerator("skus", collectionGen));
+
+		return dgList ;
+
+	}
+	
+	public static List<PropertyGenerator> skupropertyBuilder () {
 
 		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
 		StringGenerator stringGenerator = new StringGenerator();
@@ -67,7 +118,20 @@ public class MainDataGenerator {
 	}
 	public static RepositoryItemGenerator createSkuGen (){
 
-		return  new RepositoryItemGenerator("sku", propertyBuilder()) ;
+		return  new RepositoryItemGenerator("sku", skupropertyBuilder()) ;
+	}
+	
+	public static RepositoryItemGenerator createProductGen (){
+
+		RepositoryItemGenerator prdGen =  new RepositoryItemGenerator("product", productpropertyBuilder()) ;
+		
+		DataGenerator refDataGenerator = new ReferencePropertyGenerator(prdGen);
+		
+
+		TreeGenerator treeGen = new TreeGenerator(refDataGenerator);
+
+		prdGen.getPropertyList().add(new PropertyGenerator("prd", treeGen));
+		return prdGen;
 	}
 
 }

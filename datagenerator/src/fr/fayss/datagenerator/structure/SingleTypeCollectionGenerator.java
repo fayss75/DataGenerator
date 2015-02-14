@@ -62,7 +62,7 @@ public  @Getter @Setter class SingleTypeCollectionGenerator  implements Collecti
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for( int i = 1 ; i > getQuantity() ; i ++)
+		for( int i = 1 ; i < getQuantity() ; i ++)
 		{
 			sb.append(getDataGenerator().generate());
 				sb.append(mSeparator);

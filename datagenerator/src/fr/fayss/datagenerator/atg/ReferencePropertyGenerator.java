@@ -15,7 +15,7 @@ import fr.fayss.datagenerator.PropertyConfigurationException;
  * @author fayss
  *
  */
-public @Getter @Setter class SimpleReferencePropertyGenerator implements DataGenerator{
+public @Getter @Setter class ReferencePropertyGenerator implements DataGenerator{
 
 
 
@@ -27,7 +27,7 @@ public @Getter @Setter class SimpleReferencePropertyGenerator implements DataGen
 	/**
 	 * Constructor
 	 */
-	public SimpleReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ){
+	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ){
 		mRepositoryItemGenerator = pRepositoryItemGenerator; 
 		mIdGenerator = getRepositoryItemGenerator().getIdGenerator() ;
 
@@ -37,7 +37,7 @@ public @Getter @Setter class SimpleReferencePropertyGenerator implements DataGen
 	/**
 	 * Constructor
 	 */
-	public SimpleReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ,
+	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ,
 			ItemDescriptorIdGenerator  pDataTypeGenerator ){
 		mRepositoryItemGenerator = pRepositoryItemGenerator; 
 		mIdGenerator = pDataTypeGenerator ;
