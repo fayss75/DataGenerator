@@ -22,7 +22,7 @@ public  @Getter @Setter class SimpleCollectionGenerator  implements CollectionGe
 	 * define the quantity of generated datas
 	 * default quantity is 5 
 	 */
-	private int mQuantity = 5 ;
+	private int mQuantity = 1 ;
 	
 	/** define the generator used to generate data */
 	private DataGenerator mDataGenerator ;

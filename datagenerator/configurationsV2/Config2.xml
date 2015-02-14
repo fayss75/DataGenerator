@@ -4,56 +4,36 @@
 	</mainGenerators>
 
 	<dataGenerator name="skuV1" class="fr.fayss.datagenerator.atg.RepositoryItemGenerator">
-		<propertyConfig name="itemName">
-			<![CDATA[sku]]>
-		</propertyConfig>
+		<propertyConfig name="itemName"><![CDATA[sku]]></propertyConfig>
 		<propertyConfig name="idGenerator">
-			<propertyConfig name="prefix">
-				<![CDATA[sku]]>
-			</propertyConfig>
+			<propertyConfig name="prefix"><![CDATA[sku]]></propertyConfig>
 		</propertyConfig>
 		<propertyConfig name="propertyList" type="list">
-			<dataGeneratorRef>
-				<![CDATA[integerProperty]]>
-			</dataGeneratorRef>
-			<dataGeneratorRef>
-				<![CDATA[stringProperty]]>
-			</dataGeneratorRef>
-			<dataGeneratorRef>
-				<![CDATA[integerProperty]]>
-			</dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[integerProperty]]></dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[stringProperty]]></dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[integerProperty]]></dataGeneratorRef>
 		</propertyConfig>
 	</dataGenerator>
 
 	<dataGenerator name="integerProperty" class="fr.fayss.datagenerator.atg.PropertyGenerator">
 		<propertyConfig name="dataTypeGenerator">
-			<dataGeneratorRef>
-				<![CDATA[integerGenerator]]>
-			</dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[integerGenerator]]></dataGeneratorRef>
 		</propertyConfig>
-		<propertyConfig name="propertyName">
-			<![CDATA[integerProperty]]>
-		</propertyConfig>
+		<propertyConfig name="propertyName"><![CDATA[integerProperty]]></propertyConfig>
 	</dataGenerator>
 
 	<dataGenerator name="stringProperty" class="fr.fayss.datagenerator.atg.PropertyGenerator">
 		<propertyConfig name="dataTypeGenerator">
-			<dataGeneratorRef>
-				<![CDATA[stringGenerator]]>
-			</dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[stringGenerator]]></dataGeneratorRef>
 		</propertyConfig>
-		<propertyConfig name="propertyName">
-			<![CDATA[stringProperty]]>
-		</propertyConfig>
+		<propertyConfig name="propertyName"><![CDATA[stringProperty]]></propertyConfig>
 	</dataGenerator>
 
 
-	<dataGenerator name="stringGenerator"
-		class="fr.fayss.datagenerator.types.StringGenerator">
+	<dataGenerator name="stringGenerator" class="fr.fayss.datagenerator.types.StringGenerator">
 	</dataGenerator>
 
-	<dataGenerator name="integerGenerator"
-		class="fr.fayss.datagenerator.types.IntegerGenerator">
+	<dataGenerator name="integerGenerator" class="fr.fayss.datagenerator.types.IntegerGenerator">
 	</dataGenerator>
 
 </dataconfig>

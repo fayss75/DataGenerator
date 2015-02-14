@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import fr.fayss.datagenerator.DataConfiguration;
 import fr.fayss.datagenerator.DataConfigurationTools;
+import fr.fayss.datagenerator.DataFormatter;
+import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.GenerationBuffer;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 import fr.fayss.datagenerator.ReferenceDataGenerator;
@@ -20,27 +22,17 @@ public @Getter @Setter class ReferencePropertyGenerator implements ReferenceData
 
 
 	private RepositoryItemGenerator mRepositoryItemGenerator ;
-	private ItemDescriptorIdGenerator  mReferenceIdGenerator;
+	private DataGenerator  mReferenceIdGenerator;
 	private String mReferenceKey;
 	
 	/**
 	 * Constructor
 	 */
-	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator,String pRefKey ){
-		mRepositoryItemGenerator = pRepositoryItemGenerator; 
-		mReferenceIdGenerator = getRepositoryItemGenerator().getIdGenerator() ;
-		mReferenceKey = pRefKey;
-	}
-
-
-	/**
-	 * Constructor
-	 */
 	public ReferencePropertyGenerator (RepositoryItemGenerator pRepositoryItemGenerator ,
-			ItemDescriptorIdGenerator  pDataTypeGenerator ){
+			DataGenerator  pDataTypeGenerator,String pRefKey){
 		mRepositoryItemGenerator = pRepositoryItemGenerator; 
 		mReferenceIdGenerator = pDataTypeGenerator ;
-
+		mReferenceKey = pRefKey;
 	}
 
 	/* (non-Javadoc)
@@ -55,7 +47,7 @@ public @Getter @Setter class ReferencePropertyGenerator implements ReferenceData
 		
 		DataConfiguration dataconfigutation = new DataConfiguration() ;
 		dataconfigutation.setPropertyConfiguration(DataConfigurationTools.DATA_GENERATOR_INSTANCE,getRepositoryItemGenerator());
-		dataconfigutation.setPropertyConfiguration(RepositoryItemGenerator.VALUE_PROP,repositoryId);
+		dataconfigutation.setPropertyConfiguration(DataFormatter.VALUE_PROP,repositoryId);
 		genBuffer.pushItem(dataconfigutation);
 		
 		return repositoryId;
