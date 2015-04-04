@@ -2,6 +2,8 @@ package fr.fayss.datagenerator.atg;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import fr.fayss.datagenerator.DataConfiguration;
@@ -117,7 +119,7 @@ public @Getter @Setter class RepositoryItemGenerator implements DataFormatter{
 	 */
 	public void generateStartAddItemTag (StringBuilder pStringBuilder) {
 
-		pStringBuilder.append("<add-item item-descriptor=\"").append(mItemName);
+		pStringBuilder.append("<add-item item-descriptor=\"").append(getItemName());
 		
 		if (getValue() == null){
 			pStringBuilder.append("\" id=\"").append(getIdGenerator().generate());
@@ -152,5 +154,17 @@ public @Getter @Setter class RepositoryItemGenerator implements DataFormatter{
 	 */
 	public void generateEndAddItemTag (StringBuilder pStringBuilder) {
 		pStringBuilder.append("</add-item>\n");
+	}
+
+
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return !StringUtils.isBlank(getItemName()) &&
+				(getValue() != null || getIdGenerator() != null) &&
+				getPropertyList() != null  &&
+				!getPropertyList().isEmpty() ;
 	}
 }

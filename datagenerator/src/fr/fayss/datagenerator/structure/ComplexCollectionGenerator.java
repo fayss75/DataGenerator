@@ -69,4 +69,13 @@ public class ComplexCollectionGenerator implements CollectionGenerator{
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
 
+
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return mDataList != null;
+	}
+
 }

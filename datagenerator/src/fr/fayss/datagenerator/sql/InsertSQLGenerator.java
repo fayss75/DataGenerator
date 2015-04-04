@@ -5,6 +5,8 @@ package fr.fayss.datagenerator.sql;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import fr.fayss.datagenerator.DataConfiguration;
@@ -107,6 +109,15 @@ public @Getter @Setter class  InsertSQLGenerator implements DataGenerator {
 	public void configure(DataConfiguration pDataconfig)
 			throws PropertyConfigurationException {
 		DataConfigurationTools.configure(this, pDataconfig);
+	}
+
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return  (!StringUtils.isBlank(getTableName()) && mQuantity > 0)  ;
+		
 	}
 
 }

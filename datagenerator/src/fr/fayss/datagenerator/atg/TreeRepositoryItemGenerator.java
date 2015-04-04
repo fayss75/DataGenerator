@@ -24,13 +24,14 @@ public @Getter @Setter class TreeRepositoryItemGenerator extends RepositoryItemG
 
 	/** 
 	 * Define the number of direct child items 
-	 * Default vale is 3 
+	 * Default value is 3 
 	 */
 	private Integer mNbChild = 3;
 	
 	/** 
 	 * Define the depth of the tree 
-	 * Default value is 3*/
+	 * Default value is 3
+	 */
 	private Integer mDepth = 3 ;
 	
 	

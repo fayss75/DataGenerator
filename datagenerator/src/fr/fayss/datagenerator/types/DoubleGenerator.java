@@ -49,5 +49,17 @@ public @Getter @Setter class DoubleGenerator implements DataGenerator {
 		
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
+
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getStartInclusive() != null &&
+				getEndInclusive() != null &&  
+				getStartInclusive() < getEndInclusive() &&
+				getScale() != null &&
+				getScale() > 0;
+	}
 	
 }

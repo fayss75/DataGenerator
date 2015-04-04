@@ -1,6 +1,8 @@
 package fr.fayss.datagenerator.structure;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import fr.fayss.datagenerator.DataConfiguration;
@@ -22,7 +24,7 @@ public  @Getter @Setter class SimpleCollectionGenerator  implements CollectionGe
 	 * define the quantity of generated datas
 	 * default quantity is 5 
 	 */
-	private int mQuantity = 1 ;
+	private int mQuantity = 5 ;
 	
 	/** define the generator used to generate data */
 	private DataGenerator mDataGenerator ;
@@ -76,6 +78,16 @@ public  @Getter @Setter class SimpleCollectionGenerator  implements CollectionGe
 	public void configure(DataConfiguration pDataconfig)
 			throws PropertyConfigurationException {
 		DataConfigurationTools.configure(this, pDataconfig);
+	}
+
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getQuantity() > 0 && 
+				getDataGenerator() != null && 
+				!StringUtils.isBlank(getSeparator()) ;
 	}
 
 }

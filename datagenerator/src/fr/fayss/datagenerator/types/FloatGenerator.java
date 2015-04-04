@@ -36,7 +36,7 @@ public @Getter @Setter class FloatGenerator implements DataGenerator {
 	 * Define the number of decimals
 	 * Default value is 2
 	 */
-	private int mScale = 2 ;
+	private Integer mScale = 2 ;
 
 	@Override
 	public Object generate() {
@@ -49,6 +49,18 @@ public @Getter @Setter class FloatGenerator implements DataGenerator {
 	public void configure(DataConfiguration pDataconfig) throws PropertyConfigurationException {
 		
 		DataConfigurationTools.configure(this, pDataconfig);
+	}
+
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getStartInclusive() != null &&
+				getEndInclusive() != null &&  
+				getStartInclusive() < getEndInclusive() &&
+				getScale() != null &&
+				getScale() > 0;
 	}
 	
 

@@ -100,5 +100,14 @@ public @Getter @Setter class PropertyGenerator implements DataFormatter{
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		
+		return getValue() != null || getDataTypeGenerator() != null ;
+	}
+
 
 }

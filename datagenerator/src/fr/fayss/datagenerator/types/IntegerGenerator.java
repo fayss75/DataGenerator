@@ -40,5 +40,15 @@ public @Getter @Setter class IntegerGenerator implements DataGenerator {
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getStartInclusive() != null &&
+				getEndInclusive() != null &&  
+				getStartInclusive() < getEndInclusive();
+	}
+
 
 }

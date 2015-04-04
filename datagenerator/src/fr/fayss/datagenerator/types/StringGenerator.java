@@ -49,4 +49,13 @@ public @Getter @Setter class StringGenerator implements DataGenerator{
 		DataConfigurationTools.configure(this, pDataconfig);
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getStringLength() != null &&
+				getStringLength() > 0;
+	}
+
 }

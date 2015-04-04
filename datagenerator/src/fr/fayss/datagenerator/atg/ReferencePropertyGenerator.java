@@ -67,5 +67,15 @@ public @Getter @Setter class ReferencePropertyGenerator implements ReferenceData
 
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getReferenceIdGenerator() != null &&
+				getRepositoryItemGenerator() != null &&
+				getReferenceKey() != null;
+	}
+
 
 }

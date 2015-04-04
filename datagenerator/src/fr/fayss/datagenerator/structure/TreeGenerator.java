@@ -97,4 +97,16 @@ public @Getter @Setter class TreeGenerator implements DataGenerator {
 		return GenerationBuffer.getInstance();
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.fayss.datagenerator.DataGenerator#isConfigured()
+	 */
+	@Override
+	public boolean isConfigured() {
+		return getDataGenerator() != null &&
+				getNbChild() != null && 
+				getNbChild() > 0 && 
+				getDepth() != null &&
+				getDepth() > 0;
+	}
+
 }

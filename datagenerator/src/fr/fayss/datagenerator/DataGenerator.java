@@ -24,7 +24,12 @@ public interface DataGenerator {
 	 */
 	public void configure ( DataConfiguration pDataconfig) throws PropertyConfigurationException ;
 	
-	
+	/**
+	 * Test if the data generator is well configured at least to work without 
+	 * Exception throw at its level
+	 * @return true if its well configured, false otherwise
+	 */
+	public boolean isConfigured ();
 	/**
 	 * Verify if the dataGenerator has the minimum configuration to work.
 	 * if we used the Contructors of the class , if shoud be ok , but if we use
