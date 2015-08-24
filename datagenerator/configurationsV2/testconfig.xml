@@ -1,0 +1,18 @@
+<dataconfig name="testconfig">
+
+
+	<dataGenerator name="skuGenerator" class="fr.fayss.datagenerator.atg.RepositoryItemGenerator">
+		<propertyConfig name="itemName"><![CDATA[sku]]></propertyConfig>
+		<propertyConfig name="idGenerator">
+			<propertyConfig name="prefix"><![CDATA[sku]]></propertyConfig>
+		</propertyConfig>
+		<propertyConfig name="propertyList" type="list">
+			<dataGeneratorRef><![CDATA[integerProperty]]></dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[stringProperty]]></dataGeneratorRef>
+			<dataGeneratorRef><![CDATA[integerProperty]]></dataGeneratorRef>
+		</propertyConfig>
+	</dataGenerator>
+
+
+
+</dataconfig>

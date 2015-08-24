@@ -13,8 +13,9 @@ public interface DataGenerator {
 	/** Returns the generated data 
 	 * this method should call the method isGeneratorConfigured () before 
 	 * generating any data.
+	 * @throws GenerationException  if there is any error during the generation
 	 * */
-	public Object generate ();
+	public Object generate () throws GenerationException;
 	
 	/**
 	 * Configure properties of the data generator

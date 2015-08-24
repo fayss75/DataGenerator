@@ -11,6 +11,10 @@ import org.apache.commons.beanutils.BeanUtils;
  */
 public class DataConfigurationTools {
 	
+	/**
+	 * Name of the property that have to be used to put the datagenerator instance
+	 * 	in the DataConfiguration
+	 */
 	public static final String DATA_GENERATOR_INSTANCE = "dataGeneratorInstance";
 
 
@@ -33,7 +37,7 @@ public class DataConfigurationTools {
 	/**
 	 * Change the propertie's value of the data generator by using the Data config property
 	 * The data config must contains the data generator in this method and it must store using 
-	 * the static property DataConfigurationTools.DATA_GENERATOR_CLASS
+	 * the static property DataConfigurationTools.DATA_GENERATOR_INSTANCE
 	 * @param pDataconfig the data configuration to use
 	 * @throws PropertyConfigurationException
 	 */
@@ -55,27 +59,27 @@ public class DataConfigurationTools {
 	/**
 	 * Change the value of a specific property of the data generator
 	 * @param pDataGen the data generator 
-	 * @param PropertyName the property name ,must be defined in the data generator) 
-	 * @param propertyValue the value to set
-	 * @param testPropetyExist true if we want to throw an exception if a property doesn't exist. false to ignore
+	 * @param pPropertyName the property name ,must be defined in the data generator) 
+	 * @param pPropertyValue the value to set
+	 * @param pTestPropetyExist true if we want to throw an exception if a property doesn't exist. false to ignore
 	 * @throws PropertyConfigurationException
 	 */
-	public static void configure(DataGenerator pDataGen, String PropertyName, Object propertyValue ,boolean testPropetyExist) 
+	public static void configure(DataGenerator pDataGen, String pPropertyName, Object pPropertyValue ,boolean pTestPropetyExist) 
 			throws PropertyConfigurationException {
 		
 		try {
-			if (testPropetyExist){
+			if (pTestPropetyExist){
 				// add the getProperty method because setProperty doesn't throw  exceptions if the property doesn't exist ..
-				BeanUtils.getProperty(pDataGen, PropertyName);
+				BeanUtils.getProperty(pDataGen, pPropertyName);
 			}
-			BeanUtils.setProperty(pDataGen, PropertyName, propertyValue);
+			BeanUtils.setProperty(pDataGen, pPropertyName, pPropertyValue);
 
 		} catch (IllegalAccessException e) {
 			throw new PropertyConfigurationException(e);
 		} catch (InvocationTargetException e) {
 			throw new PropertyConfigurationException(e);
 		} catch (NoSuchMethodException e) {
-			throw new PropertyConfigurationException("Property " + PropertyName + " not found in data generator " + pDataGen.getClass());
+			throw new PropertyConfigurationException("Property " + pPropertyName + " not found in data generator " + pDataGen.getClass());
 		}
 		
 	}
@@ -83,13 +87,13 @@ public class DataConfigurationTools {
 	/**
 	 * Change the value of a specific property of the data generator
 	 * @param pDataGen the data generator 
-	 * @param PropertyName the property name ,must be defined in the data generator) 
-	 * @param propertyValue the value to set
+	 * @param pPropertyName the property name ,must be defined in the data generator) 
+	 * @param pPropertyValue the value to set
 	 * @throws PropertyConfigurationException
 	 */
-	public static void configure(DataGenerator pDataGen, String PropertyName, Object propertyValue ) 
+	public static void configure(DataGenerator pDataGen, String pPropertyName, Object pPropertyValue ) 
 			throws PropertyConfigurationException {
-		 configure( pDataGen,  PropertyName,  propertyValue , false); 
+		 configure( pDataGen,  pPropertyName,  pPropertyValue , false); 
 	}
 	
 	

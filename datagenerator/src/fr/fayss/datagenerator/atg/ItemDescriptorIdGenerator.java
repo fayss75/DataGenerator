@@ -18,7 +18,7 @@ public @Getter @Setter class ItemDescriptorIdGenerator extends IntegerGenerator 
 	/** Define the prefix of the generated id */
 	private String mPrefix="";
 	
-	/** Define the suffic of the generated id */
+	/** Define the suffix of the generated id */
 	private String mSuffix="";
 
 	@Override

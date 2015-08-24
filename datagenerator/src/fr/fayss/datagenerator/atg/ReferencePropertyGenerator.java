@@ -10,6 +10,7 @@ import fr.fayss.datagenerator.DataConfigurationTools;
 import fr.fayss.datagenerator.DataFormatter;
 import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.GenerationBuffer;
+import fr.fayss.datagenerator.GenerationException;
 import fr.fayss.datagenerator.PropertyConfigurationException;
 import fr.fayss.datagenerator.ReferenceDataGenerator;
 
@@ -48,7 +49,11 @@ public @Getter @Setter class ReferencePropertyGenerator implements ReferenceData
 		DataConfiguration dataconfigutation = new DataConfiguration() ;
 		dataconfigutation.setPropertyConfiguration(DataConfigurationTools.DATA_GENERATOR_INSTANCE,getRepositoryItemGenerator());
 		dataconfigutation.setPropertyConfiguration(DataFormatter.VALUE_PROP,repositoryId);
-		genBuffer.pushItem(dataconfigutation);
+		try {
+			genBuffer.pushItem(dataconfigutation);
+		} catch (PropertyConfigurationException e) {
+			throw new GenerationException(e) ;
+		}
 		
 		return repositoryId;
 	}
