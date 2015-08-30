@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Data Generator">
+	
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+	  <classpath>
+	    <fileset dir="G:\projects\jaxb-ri\lib" includes="*.jar" />
+	  </classpath>
+	</taskdef>
+
+	<target name="run-XJC" description="test" >
+		<xjc destdir="src" schema="resources/datagen.xml"  package="fr.fayss.datagenerator.atg.gsa" />
+	</target>
+</project>

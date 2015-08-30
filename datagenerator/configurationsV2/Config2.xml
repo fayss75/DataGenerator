@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <dataconfig name="Config2">
 
 	<mainGenerators name="skuV1" />
 
-	<dataGenerator name="skuV1" class="fr.fayss.datagenerator.atg.RepositoryItemGenerator">
-		<propertyConfig name="itemName">sku</propertyConfig>
+	<dataGenerator id="skuV1" class="fr.fayss.datagenerator.atg.RepositoryItemGenerator">
+		<propertyValue name="itemName">sku</propertyValue>
 		<propertyConfig name="idGenerator">
-			<propertyConfig name="prefix">sku</propertyConfig>
+			<propertyValue name="prefix">sku</propertyValue>
 		</propertyConfig>
 		<propertyConfig name="propertyList" type="list">
 			<dataGeneratorRef>integerProperty</dataGeneratorRef>
@@ -14,23 +15,23 @@
 		</propertyConfig>
 	</dataGenerator>
 
-	<dataGenerator name="integerProperty" class="fr.fayss.datagenerator.atg.PropertyGenerator">
+	<dataGenerator id="integerProperty" class="fr.fayss.datagenerator.atg.PropertyGenerator">
 		<propertyConfig name="dataTypeGenerator">
 			<dataGeneratorRef>integerGenerator</dataGeneratorRef>
 		</propertyConfig>
-		<propertyConfig name="propertyName">integerProperty</propertyConfig>
+		<propertyValue name="propertyName">integerProperty</propertyValue>
 	</dataGenerator>
 
-	<dataGenerator name="stringProperty" class="fr.fayss.datagenerator.atg.PropertyGenerator">
+	<dataGenerator id="stringProperty" class="fr.fayss.datagenerator.atg.PropertyGenerator">
 		<propertyConfig name="dataTypeGenerator">
 			<dataGeneratorRef>stringGenerator</dataGeneratorRef>
 		</propertyConfig>
-		<propertyConfig name="propertyName">stringProperty</propertyConfig>
+		<propertyValue name="propertyName">stringProperty</propertyValue>
 	</dataGenerator>
 
 
-	<dataGenerator name="stringGenerator" class="fr.fayss.datagenerator.types.StringGenerator"/>
+	<dataGenerator id="stringGenerator" class="fr.fayss.datagenerator.types.StringGenerator"/>
 
-	<dataGenerator name="integerGenerator" class="fr.fayss.datagenerator.types.IntegerGenerator"/>
+	<dataGenerator id="integerGenerator" class="fr.fayss.datagenerator.types.IntegerGenerator"/>
 
 </dataconfig>

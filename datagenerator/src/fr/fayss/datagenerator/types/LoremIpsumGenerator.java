@@ -56,9 +56,6 @@ public @Getter @Setter class LoremIpsumGenerator implements DataGenerator {
 			
 			return getLoremIpsum().getWords(getQuantity());			
 		}
-
-		
-		
 	}
 
 	/* (non-Javadoc)
