@@ -11,103 +11,102 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.lang3.StringUtils;
 
 import fr.fayss.datagenerator.DataGenerator;
-import fr.fayss.datagenerator.atg.gsa.Dataconfig;
-import fr.fayss.datagenerator.atg.gsa.PropertyConfig;
+import fr.fayss.datagenerator.atg.xml.DataConfig;
+import fr.fayss.datagenerator.atg.xml.PropertyConfig;
 
 public class AtgTemplateGenerator {
+
+
+	public static final String XML_BINDING_PACKAGE = "fr.fayss.datagenerator.atg.xml" ;
 
 	public static Map<String, DataGenerator> dataGenMap  = new HashMap<String, DataGenerator> ();
 	public static final String File_Path ="C:\\Users\\fayss\\Documents\\GitHub\\DataGenerator\\datagenerator\\configurationsV2\\Config2.xml" ;  
 	public static void main(String[] args) {
-		
-		
+
+
 		try {
-			JAXBContext jc = JAXBContext.newInstance("fr.fayss.datagenerator.atg.gsa");
+			JAXBContext jc = JAXBContext.newInstance(XML_BINDING_PACKAGE);
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
-			
-			Dataconfig dataconfig = (Dataconfig) unmarshaller.unmarshal(new File(File_Path));
-			
-			
-			
+
+			DataConfig dataconfig = (DataConfig) unmarshaller.unmarshal(new File(File_Path));
+
+
+
 			System.out.println(dataconfig.getName());
-			
+
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	public void registerDataGenerator (String pId , DataGenerator pDataGenerator){
 		dataGenMap.put(pId, pDataGenerator) ;
 	}
-	
+
 	public DataGenerator getDataGeneratorById (String pId ){
 		return dataGenMap.get(pId) ;
 	}
-	
+
+
+	/**
+	 * Bind the xml File to java objects
+	 * @param pXmlFile
+	 * @return a DataConfig that contains the mapping from the xml file 
+	 * @throws JAXBException
+	 */
+	public DataConfig createDataConfig (File pXmlFile) throws JAXBException {
+		JAXBContext	jc = JAXBContext.newInstance(XML_BINDING_PACKAGE);
+		Unmarshaller unmarshaller = jc.createUnmarshaller();
+		return (DataConfig) unmarshaller.unmarshal(new File(File_Path));
+	}
+
+
+
+
 	public void generateTemplatefromXml (File pXmlFile) {
 
-		DataGenerator dg = null;
-		
-	
-		
+
 		try {
-		JAXBContext jc = JAXBContext.newInstance("fr.fayss.datagenerator.atg.gsa");
-		
-		Unmarshaller unmarshaller = jc.createUnmarshaller();
-		
-		Dataconfig dataconfig = (Dataconfig) unmarshaller.unmarshal(new File(File_Path));
-		
-		
-		
-		for (fr.fayss.datagenerator.atg.gsa.Dataconfig.DataGenerator dataGenXml : dataconfig.getDataGenerator()){
-			
-			
-			String className = dataGenXml.getClazz() ;
-			
-			try {
+			DataConfig dataConfig = createDataConfig(pXmlFile);
+
+
+
+			for (fr.fayss.datagenerator.atg.xml.DataConfig.DataGenerator dagaGenConfig : dataConfig.getDataGenerator()){
+
+
+				String dataGenClassName = dagaGenConfig.getClazz() ;
+
 				@SuppressWarnings("unchecked")
-				Class  <DataGenerator> dataGenClass =  (Class  <DataGenerator>) Class.forName(className);
-				
-				
+				Class  <DataGenerator> dataGenClass =  (Class  <DataGenerator>) Class.forName(dataGenClassName);
+
+
 				DataGenerator DataGenIns = dataGenClass.newInstance();
-				if (!StringUtils.isBlank(dataGenXml.getId())) {
-					registerDataGenerator(dataGenXml.getId(), DataGenIns);
+				if (!StringUtils.isBlank(dagaGenConfig.getId())) {
+					registerDataGenerator(dagaGenConfig.getId(), DataGenIns);
 				}
-				
-				
-				for (PropertyConfig propertyConfig : dataGenXml.getPropertyConfig()) {
-					
-					
+
+
+				for (PropertyConfig propertyConfig : dagaGenConfig.getPropertyConfig()) {
 					String configName = propertyConfig.getName() ;
 					String configType = propertyConfig.getType() ;
-					
-					
-					
-					
-					
 				}
-				
-				
-				
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
 			}
-			
-		}
-		
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }

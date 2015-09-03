@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2015.08.30 à 11:04:29 AM CEST 
+// Généré le : 2015.09.03 à 11:22:41 PM CEST 
 //
 
 
-package fr.fayss.datagenerator.atg.gsa;
+package fr.fayss.datagenerator.atg.xml;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the fr.fayss.datagenerator.atg.gsa package. 
+ * generated in the fr.fayss.datagenerator.atg.xml package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,34 +30,34 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.fayss.datagenerator.atg.gsa
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.fayss.datagenerator.atg.xml
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link Dataconfig }
+     * Create an instance of {@link DataConfig }
      * 
      */
-    public Dataconfig createDataconfig() {
-        return new Dataconfig();
+    public DataConfig createDataConfig() {
+        return new DataConfig();
     }
 
     /**
-     * Create an instance of {@link Dataconfig.MainGenerators }
+     * Create an instance of {@link DataConfig.MainGenerators }
      * 
      */
-    public Dataconfig.MainGenerators createDataconfigMainGenerators() {
-        return new Dataconfig.MainGenerators();
+    public DataConfig.MainGenerators createDataConfigMainGenerators() {
+        return new DataConfig.MainGenerators();
     }
 
     /**
-     * Create an instance of {@link Dataconfig.DataGenerator }
+     * Create an instance of {@link DataConfig.DataGenerator }
      * 
      */
-    public Dataconfig.DataGenerator createDataconfigDataGenerator() {
-        return new Dataconfig.DataGenerator();
+    public DataConfig.DataGenerator createDataConfigDataGenerator() {
+        return new DataConfig.DataGenerator();
     }
 
     /**

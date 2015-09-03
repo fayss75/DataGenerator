@@ -71,6 +71,10 @@ public @Getter @Setter class RepositoryItemGenerator implements DataFormatter{
 		mIdGenerator = pIdGenerator;
 	}
 
+	
+	public RepositoryItemGenerator  (){
+		
+	}
 
 	/**
 	 * Constructor

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<dataconfig name="Config2">
+<dataConfig name="Config2">
 
 	<mainGenerators name="skuV1" />
 
@@ -34,4 +34,4 @@
 
 	<dataGenerator id="integerGenerator" class="fr.fayss.datagenerator.types.IntegerGenerator"/>
 
-</dataconfig>
+</dataConfig>

@@ -8,6 +8,7 @@
 	</taskdef>
 
 	<target name="run-XJC" description="test" >
-		<xjc destdir="src" schema="resources/datagen.xml"  package="fr.fayss.datagenerator.atg.gsa" />
+		 <delete dir="src/fr/fayss/datagenerator/atg/xml"/>
+		<xjc destdir="src" schema="resources/datagen.xsd"  package="fr.fayss.datagenerator.atg.xml" />
 	</target>
 </project>

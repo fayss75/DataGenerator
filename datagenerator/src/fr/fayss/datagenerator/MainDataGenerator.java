@@ -43,6 +43,19 @@ public class MainDataGenerator {
 
 	public static void main(String[] args) {
 
+		
+		try {
+			DataGenerator DataGenIns = RepositoryItemGenerator.class.newInstance() ;
+			
+			System.out.println("is configured" + DataGenIns.isConfigured());
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 			File file = new File("F:/filename2.txt");
 
 			DataGenerator productGen = createCatalog ();

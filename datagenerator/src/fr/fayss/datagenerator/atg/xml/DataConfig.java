@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2015.08.30 à 11:04:29 AM CEST 
+// Généré le : 2015.09.03 à 11:22:41 PM CEST 
 //
 
 
-package fr.fayss.datagenerator.atg.gsa;
+package fr.fayss.datagenerator.atg.xml;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,12 +66,12 @@ import javax.xml.bind.annotation.XmlValue;
     "mainGenerators",
     "dataGenerator"
 })
-@XmlRootElement(name = "dataconfig")
-public class Dataconfig {
+@XmlRootElement(name = "dataConfig")
+public class DataConfig {
 
     @XmlElement(required = true)
-    protected Dataconfig.MainGenerators mainGenerators;
-    protected List<Dataconfig.DataGenerator> dataGenerator;
+    protected DataConfig.MainGenerators mainGenerators;
+    protected List<DataConfig.DataGenerator> dataGenerator;
     @XmlAttribute(name = "name")
     protected String name;
 
@@ -80,10 +80,10 @@ public class Dataconfig {
      * 
      * @return
      *     possible object is
-     *     {@link Dataconfig.MainGenerators }
+     *     {@link DataConfig.MainGenerators }
      *     
      */
-    public Dataconfig.MainGenerators getMainGenerators() {
+    public DataConfig.MainGenerators getMainGenerators() {
         return mainGenerators;
     }
 
@@ -92,10 +92,10 @@ public class Dataconfig {
      * 
      * @param value
      *     allowed object is
-     *     {@link Dataconfig.MainGenerators }
+     *     {@link DataConfig.MainGenerators }
      *     
      */
-    public void setMainGenerators(Dataconfig.MainGenerators value) {
+    public void setMainGenerators(DataConfig.MainGenerators value) {
         this.mainGenerators = value;
     }
 
@@ -117,13 +117,13 @@ public class Dataconfig {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Dataconfig.DataGenerator }
+     * {@link DataConfig.DataGenerator }
      * 
      * 
      */
-    public List<Dataconfig.DataGenerator> getDataGenerator() {
+    public List<DataConfig.DataGenerator> getDataGenerator() {
         if (dataGenerator == null) {
-            dataGenerator = new ArrayList<Dataconfig.DataGenerator>();
+            dataGenerator = new ArrayList<DataConfig.DataGenerator>();
         }
         return this.dataGenerator;
     }

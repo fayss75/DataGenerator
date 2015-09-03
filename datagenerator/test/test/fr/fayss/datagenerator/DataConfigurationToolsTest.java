@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import fr.fayss.datagenerator.DataConfigurationConstant;
 import fr.fayss.datagenerator.DataConfigurationTools;
+import fr.fayss.datagenerator.DataGenerator;
 import fr.fayss.datagenerator.PropertyConfigurationException;
+import fr.fayss.datagenerator.atg.RepositoryItemGenerator;
 import fr.fayss.datagenerator.types.IntegerGenerator;
 
 
@@ -49,6 +51,23 @@ public class DataConfigurationToolsTest {
 		Assert.assertEquals(new Integer(9000), integerDataGenerator.getEndInclusive());
 		
 		
+	}
+	
+	public void testGetInstance () {
+		
+
+
+		try {
+			DataGenerator DataGenIns = RepositoryItemGenerator.class.newInstance() ;
+			
+			
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 

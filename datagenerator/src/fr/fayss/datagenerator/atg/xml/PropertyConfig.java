@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2015.08.30 à 11:04:29 AM CEST 
+// Généré le : 2015.09.03 à 11:22:41 PM CEST 
 //
 
 
-package fr.fayss.datagenerator.atg.gsa;
+package fr.fayss.datagenerator.atg.xml;
 
 import java.util.ArrayList;
 import java.util.List;
