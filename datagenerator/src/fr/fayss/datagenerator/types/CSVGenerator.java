@@ -25,9 +25,6 @@ public @Getter @Setter class CSVGenerator implements DataGenerator {
 	/**
 	 * 
 	 */
-	public CSVGenerator() {
-		// TODO Auto-generated constructor stub
-	}
 
 	/* (non-Javadoc)
 	 * @see fr.fayss.datagenerator.DataGenerator#generate()

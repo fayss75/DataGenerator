@@ -2,6 +2,9 @@ package fr.fayss.datagenerator.sql;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import org.apache.commons.lang3.StringUtils;
+
 import fr.fayss.datagenerator.types.IntegerGenerator;
 
 /**
@@ -27,6 +30,15 @@ public @Getter @Setter class IntegerColumnGenerator extends IntegerGenerator imp
 			return super.generate();
 		} else {
 			return mValue;
+		}
+	}
+	
+	@Override
+	public boolean isConfigured() {
+		if (mValue == null || StringUtils.isBlank(mColumnName)){
+			return false ;
+		} else {
+			return super.isConfigured() ;
 		}
 	}
 
