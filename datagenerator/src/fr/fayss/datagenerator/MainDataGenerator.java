@@ -83,7 +83,6 @@ public class MainDataGenerator {
 	public static List<PropertyGenerator> catpropertyBuilder () {
 
 		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
-		StringGenerator stringGenerator = new StringGenerator();
 		LoremIpsumGenerator loremIpsumGenerator = new LoremIpsumGenerator();
 
 		dgList.add(new PropertyGenerator("catString1", loremIpsumGenerator));

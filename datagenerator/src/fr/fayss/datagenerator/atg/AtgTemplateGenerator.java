@@ -11,8 +11,12 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.commons.lang3.StringUtils;
 
 import fr.fayss.datagenerator.DataGenerator;
+import fr.fayss.datagenerator.PropertyConfigurationException;
 import fr.fayss.datagenerator.atg.xml.DataConfig;
 import fr.fayss.datagenerator.atg.xml.PropertyConfig;
+import fr.fayss.datagenerator.atg.xml.PropertyValue;
+
+import static fr.fayss.datagenerator.DataConfigurationTools.*;
 
 public class AtgTemplateGenerator {
 
@@ -88,6 +92,12 @@ public class AtgTemplateGenerator {
 				}
 
 
+				for (PropertyValue propertyValue : dagaGenConfig.getPropertyValue()) {
+					String name = propertyValue.getName() ;
+					String value = propertyValue.getValue();
+					configure(DataGenIns, name, value);
+				}
+				
 				for (PropertyConfig propertyConfig : dagaGenConfig.getPropertyConfig()) {
 					String configName = propertyConfig.getName() ;
 					String configType = propertyConfig.getType() ;
@@ -105,6 +115,9 @@ public class AtgTemplateGenerator {
 			e.printStackTrace();
 
 		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PropertyConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -26,19 +26,15 @@ public interface DataGenerator {
 	public void configure ( DataConfiguration pDataconfig) throws PropertyConfigurationException ;
 	
 	/**
+	 * Verify if the dataGenerator has the minimum configuration to work.
+	 * if we used the Contructors of the class , if shoud be ok , but if we use
+	 * the class.newInstance () method, we have to verify that all the configuration is done.  
+	 * It means that if we run the generate method we will not have exceptions related
+	 * to not defined mandatory property for example.
+	 * 
 	 * Test if the data generator is well configured at least to work without 
 	 * Exception throw at its level
 	 * @return true if its well configured, false otherwise
 	 */
 	public boolean isConfigured ();
-	/**
-	 * Verify if the dataGenerator has the minimum configuration to work.
-	 * if we used the Contructors of the class , if shoud be ok , but if we use
-	 * the class.newInstance () method, we have to verify that all the configuration is done.  
-	 * Is means that if we run the generate method we will not have exceptions related
-	 * to not defined mandatory property for example.
-	 * 
-	 * @return true if the generator is configured, false if not
-	 */
-	//public boolean isGeneratorConfigured ();
 }

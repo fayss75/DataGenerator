@@ -73,13 +73,17 @@ public @Getter @Setter class RepositoryItemGenerator implements DataFormatter{
 
 	
 	public RepositoryItemGenerator  (){
-		
+		try {
+			mIdGenerator = DEFAULT_ID_GENERATOR.newInstance();
+		} catch (InstantiationException | IllegalAccessException ex) {
+			throw new InternalException(ex);
+		}
 	}
 
 	/**
 	 * Constructor
 	 * @param pItemName the name of the repository item
-	 * @param pPropertyList the list of properies of the item descriptor to generate
+	 * @param pPropertyList the list of properties of the item descriptor to generate
 	 */
 	public RepositoryItemGenerator (String pItemName,List<PropertyGenerator> pPropertyList ) {
 		mItemName = pItemName;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test.fr.fayss.datagenerator;
+package fr.fayss.test.datagenerator;
 
 
 import org.junit.Assert;
