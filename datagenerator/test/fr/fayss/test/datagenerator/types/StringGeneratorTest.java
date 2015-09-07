@@ -3,23 +3,23 @@ package fr.fayss.test.datagenerator.types;
 import org.junit.Test;
 
 import fr.fayss.datagenerator.types.StringGenerator;
+import fr.fayss.test.datagenerator.DataGeneratorTest;
 
 import static org.junit.Assert.*;
 
-public class StringGeneratorTest {
+public class StringGeneratorTest implements DataGeneratorTest{
 	
 	@Test
-	public void testIsconfigure () {
+	public void testStringGenerator () {
 		
 		StringGenerator stringGen = new StringGenerator() ;
 		
 		assertEquals(stringGen.getStringLength() , new Integer(5));
 		assertEquals(stringGen.getPrefix() , "");
 		assertEquals(stringGen.getSuffix() , "");
-		
 	}
 	
-	@Test
+	@Override @Test
 	public void testIsConfigured (){
 		
 		StringGenerator stringGen = new StringGenerator() ;
@@ -33,9 +33,12 @@ public class StringGeneratorTest {
 		
 		stringGen.setStringLength(1);
 		assertTrue(stringGen.isConfigured());	
+		
+		stringGen.setStringLength(-1);
+		assertFalse(stringGen.isConfigured());
 	}
 	
-	@Test
+	@Override @Test
 	public void testGenerate () {
 	
 		StringGenerator stringGen = new StringGenerator() ;
@@ -47,7 +50,6 @@ public class StringGeneratorTest {
 		stringGen.setStringLength(10);
 		result = (String) stringGen.generate();
 		assertTrue(result.length() == 10);
-		
 	}
 	
 	
@@ -65,7 +67,6 @@ public class StringGeneratorTest {
 		
 		assertTrue(result.length() == 16);	
 		assertTrue(result.startsWith("PREFIX"));
-		
 	}
 	
 	@Test
@@ -79,7 +80,6 @@ public class StringGeneratorTest {
 		
 		assertTrue(result.length() == 26);	
 		assertTrue(result.endsWith("SUFFIX"));
-		
 	}
 
 }

@@ -72,7 +72,8 @@ public @Getter @Setter class LoremIpsumGenerator implements DataGenerator {
 	 */
 	@Override
 	public boolean isConfigured() {
-		return (getQuantity() > 0);
+		return (getQuantity() != null &&
+				getQuantity() > 0);
 	}
 
 }
