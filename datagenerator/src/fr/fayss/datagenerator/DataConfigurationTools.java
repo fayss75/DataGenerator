@@ -3,6 +3,7 @@ package fr.fayss.datagenerator;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 
 /**
  * Data configuration Tools
@@ -16,8 +17,7 @@ public class DataConfigurationTools {
 	 * 	in the DataConfiguration
 	 */
 	public static final String DATA_GENERATOR_INSTANCE = "dataGeneratorInstance";
-
-
+	
 	/**
 	 * Change the propertie's value of the data generator by using the Data config property
 	 * @param pDataGen the data generator
@@ -46,7 +46,12 @@ public class DataConfigurationTools {
 		DataGenerator dataGenerator = (DataGenerator) pDataconfig.getPropertyConfiguration(DATA_GENERATOR_INSTANCE);
 		
 		if (dataGenerator != null){
+			
+			
 			for (String property : pDataconfig.getAllConfiguredPropertyName()) {
+				if (DATA_GENERATOR_INSTANCE.equals(property)){
+					continue ;
+				}
 				Object propertyconfig = pDataconfig.getPropertyConfiguration(property);
 				configure( dataGenerator,  property,  propertyconfig ,false) ;
 			}
@@ -72,7 +77,7 @@ public class DataConfigurationTools {
 				// add the getProperty method because setProperty doesn't throw  exceptions if the property doesn't exist ..
 				BeanUtils.getProperty(pDataGen, pPropertyName);
 			}
-			BeanUtils.setProperty(pDataGen, pPropertyName, pPropertyValue);
+			PropertyUtils.setProperty(pDataGen, pPropertyName, pPropertyValue);
 
 		} catch (IllegalAccessException e) {
 			throw new PropertyConfigurationException(e);
@@ -94,6 +99,27 @@ public class DataConfigurationTools {
 	public static void configure(DataGenerator pDataGen, String pPropertyName, Object pPropertyValue ) 
 			throws PropertyConfigurationException {
 		 configure( pDataGen,  pPropertyName,  pPropertyValue , false); 
+	}
+	
+	/**
+	 * get the value of a property 
+	 * @param pDataGen the data generator
+	 * @param pPropertyName the property name
+	 * @return
+	 * @throws PropertyConfigurationException 
+	 */
+	public static Object getPropertyValue (DataGenerator pDataGen, String pPropertyName) throws PropertyConfigurationException{
+		
+		try {
+			return PropertyUtils.getProperty(pDataGen, pPropertyName) ;
+		} catch (IllegalAccessException e) {
+			throw new PropertyConfigurationException(e);
+		} catch (InvocationTargetException e) {
+			throw new PropertyConfigurationException(e);
+		} catch (NoSuchMethodException e) {
+			throw new PropertyConfigurationException(e);
+		}
+		
 	}
 	
 	

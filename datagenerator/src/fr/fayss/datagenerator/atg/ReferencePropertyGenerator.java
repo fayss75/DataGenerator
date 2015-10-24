@@ -18,13 +18,18 @@ import fr.fayss.datagenerator.ReferenceDataGenerator;
  * @author fayss
  *
  */
-public @Getter @Setter class ReferencePropertyGenerator implements ReferenceDataGenerator {
+public  class ReferencePropertyGenerator implements ReferenceDataGenerator {
 
 
 
-	private RepositoryItemGenerator mRepositoryItemGenerator ;
-	private DataGenerator  mReferenceIdGenerator;
-	private String mReferenceKey;
+	private @Getter RepositoryItemGenerator mRepositoryItemGenerator ;
+	private @Getter @Setter DataGenerator  mReferenceIdGenerator;
+	private @Getter @Setter String mReferenceKey;
+	
+	public ReferencePropertyGenerator (){
+	}
+	
+	
 	
 	/**
 	 * Constructor
@@ -80,6 +85,13 @@ public @Getter @Setter class ReferencePropertyGenerator implements ReferenceData
 		return getReferenceIdGenerator() != null &&
 				getRepositoryItemGenerator() != null &&
 				getReferenceKey() != null;
+	}
+
+
+
+	public void setRepositoryItemGenerator(RepositoryItemGenerator pRepositoryItemGenerator) {
+		mRepositoryItemGenerator = pRepositoryItemGenerator;
+		mReferenceIdGenerator = pRepositoryItemGenerator.getIdGenerator();
 	}
 
 

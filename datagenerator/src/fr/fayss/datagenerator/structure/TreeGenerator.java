@@ -43,6 +43,10 @@ public @Getter @Setter class TreeGenerator implements DataGenerator {
 		mPositionUniqueKey = POSITION_PREFIX + pDataGenerator.getReferenceKey() ;
 	}
 
+	public TreeGenerator( ){
+		
+	}
+	
 	public TreeGenerator(ReferenceDataGenerator pDataGenerator ){
 		mDataGenerator = pDataGenerator; 
 		mCurrentDepthUniqueKey = CURRENT_DEPTH_PREFIX + pDataGenerator.getReferenceKey() ;
