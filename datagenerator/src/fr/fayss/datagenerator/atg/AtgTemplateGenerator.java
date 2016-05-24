@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import fr.fayss.datagenerator.DataGenerator;
@@ -27,9 +25,6 @@ public class AtgTemplateGenerator {
 
 	private  Map<String, DataGenerator> dataGenMap  = new HashMap<String, DataGenerator> ();
 	private String mainGeneratorId ;
-	public void setMainGeneratorId(String pMainGeneratorId) {
-		mainGeneratorId = pMainGeneratorId;
-	}
 
 
 	public static final String File_Path ="C:\\Users\\fayss\\Documents\\GitHub\\DataGenerator\\datagenerator\\configurationsV2\\Config.xml" ;  
@@ -40,15 +35,18 @@ public class AtgTemplateGenerator {
 	public static final String PROPERTY_CONFIG_TYPE_DEFAULT = "default";
 	
 	
+	private AtgTemplateGenerator () {
+		
+	}
+	
+	
+	
 	public static AtgTemplateGenerator getInstance () {
 		return new AtgTemplateGenerator ();
 	}
 	
 	
-	private AtgTemplateGenerator () {
-		
-	}
-	
+
 	
 	public static void main(String[] args) {
 
@@ -221,7 +219,9 @@ public class AtgTemplateGenerator {
 		return dataGenMap;
 	}
 
-
+	public void setMainGeneratorId(String pMainGeneratorId) {
+		mainGeneratorId = pMainGeneratorId;
+	}
 	public String getMainGeneratorId() {
 		return mainGeneratorId;
 	}
