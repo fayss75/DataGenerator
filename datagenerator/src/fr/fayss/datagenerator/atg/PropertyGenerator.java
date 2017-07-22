@@ -74,7 +74,7 @@ public @Getter @Setter class PropertyGenerator implements DataFormatter{
 	@Override
 	public Object generate() {
 		
-		Object result = null;
+		Object result ;
 		
 		if(getValue() != null) {
 			result = getValue();

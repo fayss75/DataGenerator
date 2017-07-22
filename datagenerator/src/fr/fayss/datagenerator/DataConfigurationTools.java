@@ -21,15 +21,15 @@ public class DataConfigurationTools {
 	/**
 	 * Change the propertie's value of the data generator by using the Data config property
 	 * @param pDataGen the data generator
-	 * @param pDataconfig the data configuration to use
+	 * @param pDataConfig the data configuration to use
 	 * @throws PropertyConfigurationException
 	 */
-	public static void configure ( DataGenerator pDataGen,DataConfiguration pDataconfig)
+	public static void configure ( DataGenerator pDataGen,DataConfiguration pDataConfig)
 			throws PropertyConfigurationException {
 
-		for (String property : pDataconfig.getAllConfiguredPropertyName()) {
-			Object propertyconfig = pDataconfig.getPropertyConfiguration(property);
-			configure( pDataGen,  property,  propertyconfig ) ;
+		for (String property : pDataConfig.getAllConfiguredPropertyName()) {
+			Object propertyConfig = pDataConfig.getPropertyConfiguration(property);
+			configure( pDataGen,  property,  propertyConfig ) ;
 		}
 	}
 
@@ -38,22 +38,22 @@ public class DataConfigurationTools {
 	 * Change the propertie's value of the data generator by using the Data config property
 	 * The data config must contains the data generator in this method and it must store using 
 	 * the static property DataConfigurationTools.DATA_GENERATOR_INSTANCE
-	 * @param pDataconfig the data configuration to use
+	 * @param pDataConfig the data configuration to use
 	 * @throws PropertyConfigurationException
 	 */
-	public static void configure (DataConfiguration pDataconfig)
+	public static void configure (DataConfiguration pDataConfig)
 			throws PropertyConfigurationException {
-		DataGenerator dataGenerator = (DataGenerator) pDataconfig.getPropertyConfiguration(DATA_GENERATOR_INSTANCE);
+		DataGenerator dataGenerator = (DataGenerator) pDataConfig.getPropertyConfiguration(DATA_GENERATOR_INSTANCE);
 		
 		if (dataGenerator != null){
 			
 			
-			for (String property : pDataconfig.getAllConfiguredPropertyName()) {
+			for (String property : pDataConfig.getAllConfiguredPropertyName()) {
 				if (DATA_GENERATOR_INSTANCE.equals(property)){
 					continue ;
 				}
-				Object propertyconfig = pDataconfig.getPropertyConfiguration(property);
-				configure( dataGenerator,  property,  propertyconfig ,false) ;
+				Object propertyConfig = pDataConfig.getPropertyConfiguration(property);
+				configure( dataGenerator,  property,  propertyConfig ,false) ;
 			}
 		} else {
 			throw new PropertyConfigurationException ("data generator not found in the dataConfig. use the value of the static property DataConfigurationTools.DATA_GENERATOR_CLASS") ;
@@ -66,14 +66,14 @@ public class DataConfigurationTools {
 	 * @param pDataGen the data generator 
 	 * @param pPropertyName the property name ,must be defined in the data generator) 
 	 * @param pPropertyValue the value to set
-	 * @param pTestPropetyExist true if we want to throw an exception if a property doesn't exist. false to ignore
+	 * @param pTestPropertyExist true if we want to throw an exception if a property doesn't exist. false to ignore
 	 * @throws PropertyConfigurationException
 	 */
-	public static void configure(DataGenerator pDataGen, String pPropertyName, Object pPropertyValue ,boolean pTestPropetyExist) 
+	public static void configure(DataGenerator pDataGen, String pPropertyName, Object pPropertyValue ,boolean pTestPropertyExist)
 			throws PropertyConfigurationException {
 		
 		try {
-			if (pTestPropetyExist){
+			if (pTestPropertyExist){
 				// add the getProperty method because setProperty doesn't throw  exceptions if the property doesn't exist ..
 				BeanUtils.getProperty(pDataGen, pPropertyName);
 			}

@@ -27,7 +27,7 @@ public class AtgTemplateGenerator {
 	private String mainGeneratorId ;
 
 
-	public static final String File_Path ="C:\\Users\\fayss\\Documents\\GitHub\\DataGenerator\\datagenerator\\configurationsV2\\Config.xml" ;  
+	public static final String File_Path ="C:\\Users\\Picsou\\IdeaProjects\\DataGenerator\\datagenerator\\configurationsV2\\Config.xml" ;
 
 	
 	
@@ -67,7 +67,7 @@ public class AtgTemplateGenerator {
 			DataGenerator maindataGen = dataGenMap.get(templateGen.getMainGeneratorId());
 			
 			
-			File file = new File("F:/AtgTemplateGenerator.txt");
+			File file = new File("C:\\Users\\Picsou\\Documents\\Projects\\AtgTemplateGenerator.txt");
 			
 			DataGeneratorBuilder.build(maindataGen, file);
 			

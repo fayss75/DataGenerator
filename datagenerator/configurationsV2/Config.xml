@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <dataConfig name="Config1">
 
-	<mainGenerators name="skuCollection" />
+	<mainGenerators name="product" />
 
 	<dataGenerator id="sku" class="fr.fayss.datagenerator.atg.RepositoryItemGenerator">
 		<propertyValue name="itemName">sku</propertyValue>
