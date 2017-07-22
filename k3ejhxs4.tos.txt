@@ -1,0 +1,46 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   datagenerator/.classpath
+#	modified:   datagenerator/.settings/org.eclipse.jdt.core.prefs
+#	modified:   datagenerator/configurationsV1/Config1.properties
+#	modified:   datagenerator/configurationsV1/repositoryItems/propertyGenerators/integerProperty.properties
+#	modified:   datagenerator/configurationsV1/repositoryItems/propertyGenerators/stringProperty.properties
+#	modified:   datagenerator/configurationsV1/repositoryItems/skuV1.properties
+#	modified:   datagenerator/configurationsV2/Config2.xml
+#	modified:   datagenerator/src/fr/fayss/datagenerator/DataConfiguration.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/DataConfigurationTools.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/DataFormatter.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/DataGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/DataGeneratorBuilder.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/GenerationBuffer.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/InternalException.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/MainDataGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/PropertyValueException.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/atg/ItemDescriptorIdGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/atg/PropertyGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/atg/ReferencePropertyGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/atg/RepositoryItemGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/atg/TreeRepositoryItemGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/sql/ColumnGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/sql/InsertSQLGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/sql/IntegerColumnGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/sql/VarcharGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/structure/CollectionGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/structure/MultiTypeCollectionGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/structure/SingleTypeCollectionGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/types/DoubleGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/types/FloatGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/types/IntegerGenerator.java
+#	modified:   datagenerator/src/fr/fayss/datagenerator/types/StringGenerator.java
+#	modified:   datagenerator/test/test/fr/fayss/datagenerator/DataConfigurationToolsTest.java
+#	modified:   datagenerator/test/test/fr/fayss/datagenerator/SimpleTypesGeneratorsTests.java
+#
+# Untracked files:
+#	webdatagenerator/
+#
+

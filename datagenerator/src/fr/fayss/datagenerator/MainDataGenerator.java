@@ -1,11 +1,9 @@
 package fr.fayss.datagenerator;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -30,6 +28,7 @@ import fr.fayss.datagenerator.structure.SimpleCollectionGenerator;
 import fr.fayss.datagenerator.structure.TreeGenerator;
 import fr.fayss.datagenerator.types.DoubleGenerator;
 import fr.fayss.datagenerator.types.IntegerGenerator;
+import fr.fayss.datagenerator.types.LoremIpsumGenerator;
 import fr.fayss.datagenerator.types.StringGenerator;
 
 
@@ -44,49 +43,23 @@ public class MainDataGenerator {
 
 	public static void main(String[] args) {
 
-		BufferedWriter bw = null;
+		
 		try {
+			DataGenerator DataGenIns = RepositoryItemGenerator.class.newInstance() ;
+			
+			System.out.println("is configured" + DataGenIns.isConfigured());
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 			File file = new File("F:/filename2.txt");
-			// if file doesnt exists, then create it
-			if (!file.exists()) {
-				file.createNewFile();
-			}
 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			bw = new BufferedWriter(fw);
-
-			DataGenerator productGen = createProductGen ();
-
-			bw.write(productGen.generate().toString());
-
-			GenerationBuffer generationBuffer = 
-					GenerationBuffer.getInstance();
-
-			while (generationBuffer.hasNext()){
-
-				DataConfiguration config = generationBuffer.popItem();
-
-				try {
-					DataConfigurationTools.configure(config);
-				} catch (PropertyConfigurationException e) {
-					e.printStackTrace();
-				}
-
-				bw.write(((DataGenerator)config.getPropertyConfiguration(DataConfigurationTools.DATA_GENERATOR_INSTANCE)).generate().toString());
-			}
-
-
-
-		}catch (IOException ioe){
-			ioe.printStackTrace();
-		}
-		finally {
-			try {
-				bw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+			DataGenerator productGen = createCatalog ();
+			DataGeneratorBuilder.build(productGen, file);
 
 	}
 
@@ -110,10 +83,10 @@ public class MainDataGenerator {
 	public static List<PropertyGenerator> catpropertyBuilder () {
 
 		ArrayList<PropertyGenerator> dgList = new ArrayList<PropertyGenerator>();
-		StringGenerator stringGenerator = new StringGenerator();
+		LoremIpsumGenerator loremIpsumGenerator = new LoremIpsumGenerator();
 
-		dgList.add(new PropertyGenerator("catString1", stringGenerator));
-		dgList.add(new PropertyGenerator("catString2", stringGenerator));
+		dgList.add(new PropertyGenerator("catString1", loremIpsumGenerator));
+		dgList.add(new PropertyGenerator("catString2", loremIpsumGenerator));
 		dgList.add(new PropertyGenerator("catdefault"));
 		dgList.add(new PropertyGenerator("catdoubleProperty", new DoubleGenerator()));
 		dgList.add(new PropertyGenerator("catintProperty", new IntegerGenerator()));
@@ -160,7 +133,7 @@ public class MainDataGenerator {
 		return  new RepositoryItemGenerator("sku", skupropertyBuilder()) ;
 	}
 
-	public static RepositoryItemGenerator createProductGen (){
+	public static RepositoryItemGenerator createCatalog (){
 
 
 		RepositoryItemGenerator skuGen =  new RepositoryItemGenerator("sku", skupropertyBuilder()) ;

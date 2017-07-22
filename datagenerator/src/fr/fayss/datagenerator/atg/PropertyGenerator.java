@@ -55,12 +55,9 @@ public @Getter @Setter class PropertyGenerator implements DataFormatter{
 	 * @param pPropertyName the name of the property
 	 */
 	public PropertyGenerator (String pPropertyName){
-			try {
-				mPropertyName = pPropertyName;
-				mDataTypeGenerator =  DEFAULT_DATAGENERATOR.newInstance();
-			} catch (InstantiationException | IllegalAccessException ex) {
-				throw new InternalException(ex);
-			}
+		this();
+		mPropertyName = pPropertyName;
+		
 	}
 	
 	/**
@@ -77,7 +74,7 @@ public @Getter @Setter class PropertyGenerator implements DataFormatter{
 	@Override
 	public Object generate() {
 		
-		Object result = null;
+		Object result ;
 		
 		if(getValue() != null) {
 			result = getValue();

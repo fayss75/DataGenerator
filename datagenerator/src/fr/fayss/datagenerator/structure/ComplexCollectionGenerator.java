@@ -38,6 +38,8 @@ public class ComplexCollectionGenerator implements CollectionGenerator{
 		mDataList = pDatalist ;
 	}
 	
+	public ComplexCollectionGenerator() {
+	}
 
 	@Override
 	public Object generate() {

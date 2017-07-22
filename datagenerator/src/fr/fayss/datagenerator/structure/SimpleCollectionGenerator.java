@@ -53,6 +53,10 @@ public  @Getter @Setter class SimpleCollectionGenerator  implements CollectionGe
 	public SimpleCollectionGenerator (DataGenerator pDataGenerator){
 		mDataGenerator = pDataGenerator ;
 	}
+	
+	
+	public SimpleCollectionGenerator (){
+	}
 
 
 	@Override

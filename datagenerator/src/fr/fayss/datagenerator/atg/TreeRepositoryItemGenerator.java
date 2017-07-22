@@ -35,6 +35,15 @@ public @Getter @Setter class TreeRepositoryItemGenerator extends RepositoryItemG
 	private Integer mDepth = 3 ;
 	
 	
+	@Override
+	public boolean isConfigured() {
+
+		if (mNbChild == null || mNbChild < 0 || mDepth == null || mDepth < 0 || mChildProperyGenerator == null ){
+			return false;  
+		} else {
+			return super.isConfigured();
+		}
+	}
 
 
 	/**
